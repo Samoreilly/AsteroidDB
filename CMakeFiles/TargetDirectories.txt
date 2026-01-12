@@ -1,0 +1,3 @@
+/home/sam-o-reilly/AsteroidDB/CMakeFiles/AsteroidDB.dir
+/home/sam-o-reilly/AsteroidDB/CMakeFiles/edit_cache.dir
+/home/sam-o-reilly/AsteroidDB/CMakeFiles/rebuild_cache.dir

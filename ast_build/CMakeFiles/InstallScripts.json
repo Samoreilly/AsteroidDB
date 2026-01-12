@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/sam-o-reilly/AsteroidDB/ast_build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
