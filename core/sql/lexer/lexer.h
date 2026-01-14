@@ -1,16 +1,86 @@
+#pragma once
+
+#include <cctype>
 #include <iostream>
 #include <unordered_map>
 #include <string>
+#include <vector>
+#include "TokenDef.h"
 
 class Lexer {
 public:
 
-    const std::unordered_map<std::string, std::string> tokens = {
-        {"select", "select"},
-        {"delete", "delete"}
+    static inline const std::unordered_map<std::string_view, TokenType> KEYWORDS = {
+        {"select", TokenType::KEYWORD},
+        {"delete", TokenType::KEYWORD},
+        {"create", TokenType::KEYWORD},
+        {"insert", TokenType::KEYWORD},
+        {"update", TokenType::KEYWORD},
+        {"drop",   TokenType::KEYWORD},
+        {"from",   TokenType::KEYWORD},
+        {"where",  TokenType::KEYWORD},
+        {"into",   TokenType::KEYWORD},
+        {"values", TokenType::KEYWORD},
+        {"table",  TokenType::KEYWORD},
     };
+
+    bool keywords_contains(const std::string& str) {
+        return KEYWORDS.find(str) != KEYWORDS.end();
+    }
+
+    std::vector<Token> tokens;
     
-    void lexer(std::string s);
-    void whiteSpace();
+    int startIndex = 0, endIndex = 0;;
+    bool stop = false;
+
+    void lexer(std::string str);
+    bool addToken(const std::string_view& token);
+    void createToken(std::string& token);
+
+private:
     
-}
+    void consec_symbols(std::string& token);
+
+    void printTokens() {
+        
+        for(Token t : tokens) {
+        
+            std::cout << "TokenType: " << tokenTypeToString(t.token) << "\n" << "SQL token:" << t.sql << "\n";
+        }
+    }
+
+    std::string tokenTypeToString(TokenType t) {
+        switch(t) {
+            case IDENTIFIER: return "IDENTIFIER";
+            case KEYWORD:    return "KEYWORD";
+            case NUMBER:     return "NUMBER";
+            case OPERATOR:   return "OPERATOR";
+            case COMMA:      return "COMMA";
+            case SYMBOL:     return "SYMBOL";
+            default:         return "UNKNOWN";
+        }
+    }
+
+    bool isSymbolOrWhiteSpace(char c) {
+        if(std::isspace(c)) {
+            return true;
+        }else if (isSymbol(c)) {
+            return true;
+        }
+    }
+
+    bool whiteSpace(char c) {
+        if (std::isspace(c)) {
+            return true;
+        }
+        return false;
+    }
+
+    bool isSymbol(char c) {
+        if (c == '*' || c == '(' || c == ')' || c == ',' || c == ';') {
+            return true;
+        }
+        return false;
+    }
+    
+};

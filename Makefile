@@ -160,6 +160,30 @@ core/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/main.cpp.s
 .PHONY : core/main.cpp.s
 
+core/sql/lexer/lexer.o: core/sql/lexer/lexer.cpp.o
+.PHONY : core/sql/lexer/lexer.o
+
+# target to build an object file
+core/sql/lexer/lexer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o
+.PHONY : core/sql/lexer/lexer.cpp.o
+
+core/sql/lexer/lexer.i: core/sql/lexer/lexer.cpp.i
+.PHONY : core/sql/lexer/lexer.i
+
+# target to preprocess a source file
+core/sql/lexer/lexer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.i
+.PHONY : core/sql/lexer/lexer.cpp.i
+
+core/sql/lexer/lexer.s: core/sql/lexer/lexer.cpp.s
+.PHONY : core/sql/lexer/lexer.s
+
+# target to generate assembly for a file
+core/sql/lexer/lexer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.s
+.PHONY : core/sql/lexer/lexer.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -173,6 +197,9 @@ help:
 	@echo "... core/main.o"
 	@echo "... core/main.i"
 	@echo "... core/main.s"
+	@echo "... core/sql/lexer/lexer.o"
+	@echo "... core/sql/lexer/lexer.i"
+	@echo "... core/sql/lexer/lexer.s"
 .PHONY : help
 
 

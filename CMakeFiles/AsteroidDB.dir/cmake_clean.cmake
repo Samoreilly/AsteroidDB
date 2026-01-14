@@ -4,6 +4,8 @@ file(REMOVE_RECURSE
   "AsteroidDB.pdb"
   "CMakeFiles/AsteroidDB.dir/core/main.cpp.o"
   "CMakeFiles/AsteroidDB.dir/core/main.cpp.o.d"
+  "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o"
+  "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.
