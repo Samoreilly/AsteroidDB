@@ -10,7 +10,7 @@
 class Lexer {
 public:
 
-    static inline const std::unordered_map<std::string_view, TokenType> KEYWORDS = {
+    static inline const std::unordered_map<std::string, TokenType> KEYWORDS = {
         {"select", TokenType::KEYWORD},
         {"delete", TokenType::KEYWORD},
         {"create", TokenType::KEYWORD},
@@ -24,18 +24,52 @@ public:
         {"table",  TokenType::KEYWORD},
     };
 
+
+    static inline const std::unordered_map<std::string, TokenType> OPERATORS = {
+
+        {"+",  TokenType::OPERATOR},
+        {"-",  TokenType::OPERATOR},
+        {"*",  TokenType::OPERATOR},
+        {"/",  TokenType::OPERATOR},
+        {"%",  TokenType::OPERATOR},
+
+
+        
+        {"=",  TokenType::OPERATOR},
+        {"!=", TokenType::OPERATOR},
+        {"<>", TokenType::OPERATOR},
+        {"<",  TokenType::OPERATOR},
+        {">",  TokenType::OPERATOR},
+        {"<=", TokenType::OPERATOR},
+        {">=", TokenType::OPERATOR},
+
+        {"and", TokenType::OPERATOR},
+        {"or",  TokenType::OPERATOR},
+        {"not", TokenType::OPERATOR},
+
+    
+        {"in",     TokenType::OPERATOR},
+        {"like",   TokenType::OPERATOR},
+        {"between",TokenType::OPERATOR},
+        {"is",     TokenType::OPERATOR},
+
+        {"is null",     TokenType::OPERATOR},
+        {"is not null", TokenType::OPERATOR}
+};
+
+
     bool keywords_contains(const std::string& str) {
         return KEYWORDS.find(str) != KEYWORDS.end();
     }
 
     std::vector<Token> tokens;
     
-    int startIndex = 0, endIndex = 0;;
+    int startIndex = 0, endIndex = 0, LENGTH = 0;
     bool stop = false;
 
     void lexer(std::string str);
-    bool addToken(const std::string_view& token);
-    void createToken(std::string& token);
+    bool addToken(const std::string& token);
+    void createToken(std::string_view token);
 
 private:
     
@@ -60,6 +94,10 @@ private:
             default:         return "UNKNOWN";
         }
     }
+    
+    bool isOperator(const std::string str) {
+        return OPERATORS.find(str) != OPERATORS.end();
+    }
 
     bool isSymbolOrWhiteSpace(char c) {
         if(std::isspace(c)) {
@@ -67,6 +105,7 @@ private:
         }else if (isSymbol(c)) {
             return true;
         }
+        return false;
     }
 
     bool whiteSpace(char c) {
@@ -77,7 +116,7 @@ private:
     }
 
     bool isSymbol(char c) {
-        if (c == '*' || c == '(' || c == ')' || c == ',' || c == ';') {
+        if (c == '(' || c == ')' || c == ',' || c == ';') {
             return true;
         }
         return false;

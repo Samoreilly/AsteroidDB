@@ -3,66 +3,95 @@
 #include <boost/algorithm/string/case_conv.hpp>
 #include <iostream>
 #include <boost/algorithm/string.hpp>
+#include <string_view>
 #include <vector> 
 
 
 void Lexer::lexer(std::string str) { 
-    
-    std::cout << "ENTERING LEXER" << "\n";
 
-    const int LENGTH = str.length();
+    //std::cout << "ENTERING LEXER" << "\n";
+
+    LENGTH = str.length();
  
     
     boost::algorithm::to_lower(str);
-    
 
+    
     while(endIndex < LENGTH) {
         char c = str[endIndex];
-        
-        if(whiteSpace(c)){
+     
+        if(whiteSpace(c)) {
+                    
+            while(endIndex < LENGTH && whiteSpace(str[endIndex])) endIndex++;
             
-            if(endIndex > startIndex) {
-               createToken(str);
-            }
+            startIndex = endIndex;
+            continue;
+        } 
+
+        if(isOperator(std::string(1, c))) {
+           
+            startIndex = endIndex;
             endIndex++;
+            
+            std::string_view tokenView(str.data() + startIndex, endIndex - startIndex);
+            
+            // Continue scanning for multi-character operators like >=
+            while (endIndex < LENGTH) {
+                std::string_view potentialOp = std::string_view(str.data() + startIndex, endIndex + 1 - startIndex);
+
+                if(OPERATORS.find(std::string(potentialOp)) != OPERATORS.end()) {
+                    tokenView = potentialOp;
+                    endIndex++;
+                } else {
+                    break;
+                }
+            }
+            
+            createToken(tokenView);
             startIndex = endIndex;
             continue;
         }
-
+            
         if(isSymbol(c)) {
-            
-            if(endIndex > startIndex) {
-               createToken(str);
-            }
-        
-            consec_symbols(str);
-            
-            
+            // Tokenize single symbol
+            startIndex = endIndex;
             endIndex++;
+            
+            std::string_view tokenView(str.data() + startIndex, 1);
+            createToken(tokenView);
+            
             startIndex = endIndex;
             continue;
         }
 
-        /*
-            This will build the string until it hits a whitespace and breaks
-        */
+        //if not symbol or space. continue
+        while(endIndex < LENGTH && 
+              !whiteSpace(str[endIndex]) && 
+              !isSymbol(str[endIndex]) && 
+              !isOperator(std::string(1, str[endIndex]))) {
+            endIndex++;
+        }
         
-        endIndex++;
+        
+        if(endIndex > startIndex) {
+            std::string_view tokenView(str.data() + startIndex, endIndex - startIndex);
+            createToken(tokenView);
+            startIndex = endIndex;
+        }
+
+        
     }
 
-    if(endIndex > startIndex) {
-        createToken(str);
-    }
+
 
     // std::cout << "PRINT" << "\n"; 
     printTokens();
     
 }
 
-bool Lexer::addToken(const std::string_view& token) {
+bool Lexer::addToken(const std::string& token) {
     
     if(token.empty()) {
-        std::cout << "Token is empty" << "\n";
         return false;
     }
     
@@ -76,52 +105,26 @@ bool Lexer::addToken(const std::string_view& token) {
         return true;
     
     }else if(std::isdigit(token[0])) {
-        std::cout << "added digit: " << token << "\n\n";
+        
         
         tokens.push_back({TokenType::NUMBER, token});
         return true;
     
-    }else if(token.length() == 1) {
 
-        if(isSymbol(token[0])) {
-            std::cout << "added symbol: " << token << "\n\n";
-        
-            tokens.push_back({TokenType::SYMBOL, token});
-            return true;
-        }
-       
-    }else {
-         tokens.push_back({TokenType::IDENTIFIER, token});
+    }else if(OPERATORS.find(token) != OPERATORS.end()){
+        tokens.push_back({TokenType::OPERATOR, token});
+        return true;
+    
+    }else {    
+        tokens.push_back({TokenType::IDENTIFIER, token});
         return true;
     }
 
     return false;
 } 
 
-void Lexer::consec_symbols(std::string& token) {
-    int symbol_index = endIndex;
-        
-    while(endIndex < token.length() && isSymbol(token[endIndex])) {
-        endIndex++;
-    }
-
-    if(endIndex > symbol_index) {
-        
-        std::string_view consec_symbols(token.data() + symbol_index, endIndex - symbol_index);
-        addToken(consec_symbols);
-    }
-    startIndex = endIndex;
-}
-
-void Lexer::createToken(std::string& token){
-
-    if(endIndex > token.length()) {
-        return;
-    }
-
-    std::string_view tokenView(token.data() + startIndex, endIndex - startIndex);
-
-    addToken(tokenView);
+void Lexer::createToken(std::string_view token){
+    addToken(std::string(token));
 }
 
 

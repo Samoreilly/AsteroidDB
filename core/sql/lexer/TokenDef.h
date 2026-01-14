@@ -19,6 +19,6 @@ enum TokenType {
 
 struct Token {
     TokenType token;
-    std::string_view sql;
+    std::string sql;
 };
 
