@@ -2,8 +2,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/AsteroidDB.dir/link.d"
   "AsteroidDB"
   "AsteroidDB.pdb"
-  "CMakeFiles/AsteroidDB.dir/main.cpp.o"
-  "CMakeFiles/AsteroidDB.dir/main.cpp.o.d"
+  "CMakeFiles/AsteroidDB.dir/core/main.cpp.o"
+  "CMakeFiles/AsteroidDB.dir/core/main.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

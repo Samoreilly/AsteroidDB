@@ -8,7 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/sam-o-reilly/AsteroidDB/main.cpp" "CMakeFiles/AsteroidDB.dir/main.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/main.cpp.o.d"
+  "/home/sam-o-reilly/AsteroidDB/core/main.cpp" "CMakeFiles/AsteroidDB.dir/core/main.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/core/main.cpp.o.d"
   "" "AsteroidDB" "gcc" "CMakeFiles/AsteroidDB.dir/link.d"
   )
 

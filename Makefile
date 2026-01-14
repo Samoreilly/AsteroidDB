@@ -136,29 +136,29 @@ AsteroidDB/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/build
 .PHONY : AsteroidDB/fast
 
-main.o: main.cpp.o
-.PHONY : main.o
+core/main.o: core/main.cpp.o
+.PHONY : core/main.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/main.cpp.o
-.PHONY : main.cpp.o
+core/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/main.cpp.o
+.PHONY : core/main.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+core/main.i: core/main.cpp.i
+.PHONY : core/main.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/main.cpp.i
-.PHONY : main.cpp.i
+core/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/main.cpp.i
+.PHONY : core/main.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+core/main.s: core/main.cpp.s
+.PHONY : core/main.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/main.cpp.s
-.PHONY : main.cpp.s
+core/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/main.cpp.s
+.PHONY : core/main.cpp.s
 
 # Help Target
 help:
@@ -170,9 +170,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AsteroidDB"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... core/main.o"
+	@echo "... core/main.i"
+	@echo "... core/main.s"
 .PHONY : help
 
 
