@@ -28,10 +28,9 @@ void Lexer::lexer(std::string str) {
         } 
 
         if(isOperator(std::string(1, c))) {
-           
+          
             startIndex = endIndex;
             endIndex++;
-            
             std::string_view tokenView(str.data() + startIndex, endIndex - startIndex);
             
             // Continue scanning for multi-character operators like >=
@@ -52,9 +51,14 @@ void Lexer::lexer(std::string str) {
         }
             
         if(isSymbol(c)) {
-            // Tokenize single symbol
             
+
             if(c == '\'') {
+                
+                // hanlding string literals e.g. 'sam'
+                // this lexer is designed to exclude the string literals and just include the value inside
+                // so it would be sam for the above case
+
 
                 startIndex = ++endIndex;
                 
@@ -68,18 +72,18 @@ void Lexer::lexer(std::string str) {
                 }
 
                 std::string_view stringLiteral(str.data() + startIndex, endIndex - startIndex);
-                std::cout << "SHOULD BE STRING LITERAL" << std::string(stringLiteral);
+
                 tokens.push_back({TokenType::STRING, std::string(stringLiteral)});
             
                 startIndex = ++endIndex;
                 continue;
 
             }else {
-
+             
                 std::string_view tokenView(str.data() + startIndex, 1);
                 createToken(tokenView);
-                
             }
+
             startIndex = ++endIndex; 
             continue;
         }
@@ -95,7 +99,6 @@ void Lexer::lexer(std::string str) {
         if(endIndex > startIndex) {
 
             std::string_view tokenView(str.data() + startIndex, endIndex - startIndex);
-            std::cout << std::string(tokenView) << "<-";
             createToken(tokenView);
             startIndex = endIndex;
         }

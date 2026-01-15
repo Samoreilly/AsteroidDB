@@ -22,6 +22,7 @@ public:
         {"into",   TokenType::KEYWORD},
         {"values", TokenType::KEYWORD},
         {"table",  TokenType::KEYWORD},
+        {"set", TokenType::KEYWORD}
     };
 
 
@@ -33,8 +34,7 @@ public:
         {"/",  TokenType::OPERATOR},
         {"%",  TokenType::OPERATOR},
 
-
-        
+        {"!", TokenType::OPERATOR},
         {"=",  TokenType::OPERATOR},
         {"!=", TokenType::OPERATOR},
         {"<>", TokenType::OPERATOR},
@@ -93,6 +93,7 @@ private:
     }
 
     std::string tokenTypeToString(TokenType t) {
+        
         switch(t) {
             case IDENTIFIER: return "IDENTIFIER";
             case KEYWORD:    return "KEYWORD";
