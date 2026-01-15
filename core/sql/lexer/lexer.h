@@ -52,10 +52,19 @@ public:
         {"like",   TokenType::OPERATOR},
         {"between",TokenType::OPERATOR},
         {"is",     TokenType::OPERATOR},
-
         {"is null",     TokenType::OPERATOR},
         {"is not null", TokenType::OPERATOR}
-};
+    };
+    
+    static inline const std::unordered_map<std::string, TokenType> SYMBOLS = {
+        {",", TokenType::SYMBOL},
+        {";", TokenType::SYMBOL},
+        {"(", TokenType::SYMBOL},
+        {")", TokenType::SYMBOL},
+        {".", TokenType::SYMBOL},
+        {"'", TokenType::SYMBOL}
+
+    };
 
 
     bool keywords_contains(const std::string& str) {
@@ -91,6 +100,7 @@ private:
             case OPERATOR:   return "OPERATOR";
             case COMMA:      return "COMMA";
             case SYMBOL:     return "SYMBOL";
+            case STRING:     return "STRING";
             default:         return "UNKNOWN";
         }
     }
@@ -116,7 +126,7 @@ private:
     }
 
     bool isSymbol(char c) {
-        if (c == '(' || c == ')' || c == ',' || c == ';') {
+        if (c == '(' || c == ')' || c == ',' || c == ';' || c == '\'') {
             return true;
         }
         return false;

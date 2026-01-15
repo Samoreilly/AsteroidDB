@@ -12,7 +12,6 @@ void Lexer::lexer(std::string str) {
     //std::cout << "ENTERING LEXER" << "\n";
 
     LENGTH = str.length();
- 
     
     boost::algorithm::to_lower(str);
 
@@ -54,35 +53,55 @@ void Lexer::lexer(std::string str) {
             
         if(isSymbol(c)) {
             // Tokenize single symbol
-            startIndex = endIndex;
-            endIndex++;
             
-            std::string_view tokenView(str.data() + startIndex, 1);
-            createToken(tokenView);
+            if(c == '\'') {
+
+                startIndex = ++endIndex;
+                
+                while(endIndex < LENGTH && str[endIndex] != '\'') {
+                    endIndex++;
+                }
+
+                if(endIndex >= LENGTH) {
+                    std::cout << "No terminating string literal";
+                    return;
+                }
+
+                std::string_view stringLiteral(str.data() + startIndex, endIndex - startIndex);
+                std::cout << "SHOULD BE STRING LITERAL" << std::string(stringLiteral);
+                tokens.push_back({TokenType::STRING, std::string(stringLiteral)});
             
-            startIndex = endIndex;
+                startIndex = ++endIndex;
+                continue;
+
+            }else {
+
+                std::string_view tokenView(str.data() + startIndex, 1);
+                createToken(tokenView);
+                
+            }
+            startIndex = ++endIndex; 
             continue;
         }
 
         //if not symbol or space. continue
         while(endIndex < LENGTH && 
               !whiteSpace(str[endIndex]) && 
-              !isSymbol(str[endIndex]) && 
+              !isSymbol(str[endIndex]) &&
               !isOperator(std::string(1, str[endIndex]))) {
             endIndex++;
         }
         
-        
         if(endIndex > startIndex) {
+
             std::string_view tokenView(str.data() + startIndex, endIndex - startIndex);
+            std::cout << std::string(tokenView) << "<-";
             createToken(tokenView);
             startIndex = endIndex;
         }
 
         
     }
-
-
 
     // std::cout << "PRINT" << "\n"; 
     printTokens();
@@ -95,26 +114,24 @@ bool Lexer::addToken(const std::string& token) {
         return false;
     }
     
-    auto it = KEYWORDS.find(token);
-    
     // std::cout << "addToken" << "\n";
 
-    if(it != KEYWORDS.end()) {
-        std::cout << "added keyword: " << token << "\n\n";
+    if(KEYWORDS.find(token) != KEYWORDS.end()) {
+        //std::cout << "added keyword: " << token << "\n\n";
         tokens.push_back({TokenType::KEYWORD, token});
         return true;
     
-    }else if(std::isdigit(token[0])) {
-        
-        
+    }else if(std::isdigit(token[0])) {    
         tokens.push_back({TokenType::NUMBER, token});
         return true;
     
-
     }else if(OPERATORS.find(token) != OPERATORS.end()){
         tokens.push_back({TokenType::OPERATOR, token});
         return true;
     
+    }else if(SYMBOLS.find(token) != SYMBOLS.end()){
+        tokens.push_back({TokenType::SYMBOL, token});
+        return true;
     }else {    
         tokens.push_back({TokenType::IDENTIFIER, token});
         return true;

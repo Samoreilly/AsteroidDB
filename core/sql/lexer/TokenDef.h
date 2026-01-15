@@ -8,13 +8,15 @@
     Token is the object used in the lexer for storing the TokenType and sql statement
 
 */
+
 enum TokenType { 
     IDENTIFIER, 
     KEYWORD, 
     NUMBER, 
     OPERATOR,
     COMMA,
-    SYMBOL
+    SYMBOL,
+    STRING
 };
 
 struct Token {
