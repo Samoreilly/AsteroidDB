@@ -1,11 +1,21 @@
+
 #include <iostream>
 #include "../lexer/TokenDef.h"
+#include "Node.h"
+#include "Value.h"
+#include "../../engine/Executor.h"
 
-class Expression {
+class Executor;
+
+class Expression : public Node {
+public:
+    //value is char, int, bool. string, null
+    virtual ~Expression();
+    virtual Value eval(Executor* executor) = 0;
 
 };
 
-class BinaryExpression : Expression {
+class BinaryExpression : public Expression {
 
     //cases like id > 2, etc
     Expression* left;
@@ -19,14 +29,29 @@ class BinaryExpression : Expression {
         delete left;
         delete right;
     }
+    
+    Value eval(Executor* executor) override {
+        Value leftVal = left->eval(executor);   
+        Value rightVal = right->eval(executor); 
+        
+        if (op == ">") {
+            
+        }
+
+    }
 };
 
-class Literal : Expression {
+
+class Literal : public Expression {
 public:
 
-    TokenType token;
-    std::string value;
+    Value value;
+    Literal(Value v) : value(v) {};
 
+    Value eval(Executor* executor) override {
+        return value;
+    }
+    
 };
 
 class Identifier : Expression {
@@ -34,5 +59,8 @@ public:
 
     std::string token;
 
-
+    Value eval(Executor* executor) override {
+        return executor->getCurrentRow().at(token);
+    }
 };
+
