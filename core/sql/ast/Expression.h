@@ -9,6 +9,7 @@ class Executor;
 
 class Expression : public Node {
 public:
+
     //value is char, int, bool. string, null
     virtual ~Expression();
     virtual Value eval(Executor* executor) = 0;
@@ -34,11 +35,14 @@ class BinaryExpression : public Expression {
         Value leftVal = left->eval(executor);   
         Value rightVal = right->eval(executor); 
         
-        if (op == ">") {
-            
-        }
-
-    }
+    if (op == ">")  return Value(leftVal > rightVal);   // Uses Value::operator>
+    if (op == "<")  return Value(leftVal < rightVal);   // Uses Value::operator
+    if (op == "=")  return Value(leftVal == rightVal);  // Uses Value::operator==
+    if (op == "!=") return Value(leftVal != rightVal);  // Uses Value::operator!=
+    if (op == ">=") return Value(leftVal >= rightVal);  // Uses Value::operator>=
+    if (op == "<=") return Value(leftVal <= rightVal);  // Uses Value::operator<=
+    if (op == "and") return Value(leftVal.asBool() && rightVal.asBool());
+    if (op == "or")  return Value(leftVal.asBool() || rightVal.asBool());    }
 };
 
 

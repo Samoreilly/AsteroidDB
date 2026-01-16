@@ -5,21 +5,22 @@ class Node {
 public:
 
     virtual ~Node();
-    virtual void exec();
+    virtual void exec() = 0;
 };
 
-class SelectStatement : Node {
+class SelectStatement : public Node {
 public:
 
+    //select certain fields from a table
     std::vector<std::string> columns;
     std::string table;
     
-   void exec() override {
-
+    void exec() override {
+        std::cout << "Executing select from TABLE: " << table << "\n";
     }
 };
 
-class InsertStatement : Node {
+class InsertStatement : public Node {
 public:
     
 
@@ -31,7 +32,8 @@ public:
     }
 };
 
-class DeleteStatement : Node {
+class DeleteStatement : public Node {
+public:
 
     std::vector<std::string> columns;
     std::string table;
@@ -41,4 +43,14 @@ class DeleteStatement : Node {
     }
 };
 
+class CreateStatement : public Node {
+public:
+
+    std::vector<std::string> columns;
+    std::string table;
+
+    void exec() override {
+
+    }
+};
 

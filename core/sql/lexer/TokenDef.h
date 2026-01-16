@@ -1,4 +1,5 @@
 //to avoid duplicate headers files
+
 #pragma once
 
 #include <iostream>
@@ -8,6 +9,14 @@
     Token is the object used in the lexer for storing the TokenType and sql statement
 
 */
+
+enum Statement {
+    SELECT,
+    INSERT,
+    CREATE,
+    DELETE,
+    UPDATE
+};
 
 enum TokenType { 
     IDENTIFIER, 

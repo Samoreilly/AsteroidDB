@@ -66,6 +66,14 @@ public:
 
     };
 
+    static inline const std::unordered_map<std::string, Statement> stringToParseStatement = {
+        {"select", Statement::SELECT},
+        {"insert", Statement::INSERT},
+        {"delete", Statement::DELETE},
+        {"update", Statement::UPDATE},
+        {"CREATE", Statement::CREATE}
+    };
+
 
     bool keywords_contains(const std::string& str) {
         return KEYWORDS.find(str) != KEYWORDS.end();
