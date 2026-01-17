@@ -5,6 +5,8 @@
 
 #include "../lexer/TokenDef.h"
 #include <memory>
+#include "Expression.h"
+
 
 class Expression;
 
@@ -36,9 +38,14 @@ public:
         }
         std::cout << "]" << std::endl;
         std::cout << "  table: " << table << std::endl;
-        std::cout << "  whereClause: " << (whereClause ? "present" : "null") << std::endl;
+        std::cout << "  whereClause: ";
+        if (whereClause) {
+            std::cout << std::endl;
+            whereClause->print(2);  // Pass indent level
+        } else {
+            std::cout << "null" << std::endl;
+        }
         std::cout << "}" << std::endl;
-    
     }
     
     SelectStatement() = default;

@@ -43,7 +43,9 @@ int main() {
 
     try {
         Lexer lexer;
-        lexer.lexer("select name, age FROM users WHERE age > 18");
+        lexer.lexer("SELECT id, email FROM customers WHERE active = true");
+        
+        std::cout << "\nselect name, age FROM users WHERE age > 18\n\n"; 
         
         Parser parser(lexer.getTokens());
         std::unique_ptr<Node> ast = parser.parse();
@@ -53,7 +55,8 @@ int main() {
             selectStmt->print();
         }
         
-        std::cout << "Abstract syntax tree built" << std::endl;
+
+        std::cout << "\nAbstract syntax tree built" << std::endl;
         
     } catch (const std::exception& e) {
         std::cerr << "Error-> " << e.what() << std::endl;
