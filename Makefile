@@ -160,6 +160,54 @@ core/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/main.cpp.s
 .PHONY : core/main.cpp.s
 
+core/sql/ast/Node.o: core/sql/ast/Node.cpp.o
+.PHONY : core/sql/ast/Node.o
+
+# target to build an object file
+core/sql/ast/Node.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o
+.PHONY : core/sql/ast/Node.cpp.o
+
+core/sql/ast/Node.i: core/sql/ast/Node.cpp.i
+.PHONY : core/sql/ast/Node.i
+
+# target to preprocess a source file
+core/sql/ast/Node.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.i
+.PHONY : core/sql/ast/Node.cpp.i
+
+core/sql/ast/Node.s: core/sql/ast/Node.cpp.s
+.PHONY : core/sql/ast/Node.s
+
+# target to generate assembly for a file
+core/sql/ast/Node.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.s
+.PHONY : core/sql/ast/Node.cpp.s
+
+core/sql/ast/Parser.o: core/sql/ast/Parser.cpp.o
+.PHONY : core/sql/ast/Parser.o
+
+# target to build an object file
+core/sql/ast/Parser.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o
+.PHONY : core/sql/ast/Parser.cpp.o
+
+core/sql/ast/Parser.i: core/sql/ast/Parser.cpp.i
+.PHONY : core/sql/ast/Parser.i
+
+# target to preprocess a source file
+core/sql/ast/Parser.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.i
+.PHONY : core/sql/ast/Parser.cpp.i
+
+core/sql/ast/Parser.s: core/sql/ast/Parser.cpp.s
+.PHONY : core/sql/ast/Parser.s
+
+# target to generate assembly for a file
+core/sql/ast/Parser.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.s
+.PHONY : core/sql/ast/Parser.cpp.s
+
 core/sql/lexer/lexer.o: core/sql/lexer/lexer.cpp.o
 .PHONY : core/sql/lexer/lexer.o
 
@@ -197,6 +245,12 @@ help:
 	@echo "... core/main.o"
 	@echo "... core/main.i"
 	@echo "... core/main.s"
+	@echo "... core/sql/ast/Node.o"
+	@echo "... core/sql/ast/Node.i"
+	@echo "... core/sql/ast/Node.s"
+	@echo "... core/sql/ast/Parser.o"
+	@echo "... core/sql/ast/Parser.i"
+	@echo "... core/sql/ast/Parser.s"
 	@echo "... core/sql/lexer/lexer.o"
 	@echo "... core/sql/lexer/lexer.i"
 	@echo "... core/sql/lexer/lexer.s"

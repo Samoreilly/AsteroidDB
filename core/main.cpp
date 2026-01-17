@@ -1,5 +1,7 @@
+
 #include <iostream>
 #include "sql/lexer/lexer.h"
+#include "sql/ast/Parser.h"
 
 int main() {
 
@@ -23,21 +25,40 @@ int main() {
         "INSERT INTO users VALUES ('', 'empty')",
         "INSERT INTO employees VALUES ('John Doe', 'New York')",
         "SELECT * FROM users WHERE age > 18 OR status = 'active'",
-        "SELECT * FROM orders WHERE total >= 100 AND status != 'cancelled'",    
+        "SELECT * FROM orders WHERE total >= 100 AND status != 'cancelled'",   
         "SELECT * FROM users WHERE (age > 18 AND country = 'US') OR (age > 21 AND country = 'UK')",
         "UPDATE users SET name = 'Bob', age = 30 WHERE id = 1",
         "DELETE FROM users WHERE id = 5" 
     };
 
     for(int i = 0;i < std::size(tests);i++) {
-        std::cout << "TEST: " << i + 1 << "\n";
-        std::cout << tests[i] << "\n\n\n";
+        //std::cout << "TEST: " << i + 1 << "\n";
+        //std::cout << tests[i] << "\n\n\n";
 
-        Lexer l;
-        l.lexer(tests[i]);
-        std::cout << "\n\n\n";
+      //  Lexer l;
+
+    //    l.lexer(tests[i]);
+        //std::cout << "\n\n\n";
+    }
+
+    try {
+        Lexer lexer;
+        lexer.lexer("select name, age FROM users WHERE age > 18");
+        
+        Parser parser(lexer.getTokens());
+        std::unique_ptr<Node> ast = parser.parse();
+        
+        if(auto* selectStmt = dynamic_cast<SelectStatement*>(ast.get())) {
+
+            selectStmt->print();
+        }
+        
+        std::cout << "Abstract syntax tree built" << std::endl;
+        
+    } catch (const std::exception& e) {
+        std::cerr << "Error-> " << e.what() << std::endl;
+        return 1;
     }
     
-
     return 0;
 }

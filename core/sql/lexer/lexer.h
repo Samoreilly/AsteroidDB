@@ -84,9 +84,13 @@ public:
     int startIndex = 0, endIndex = 0, LENGTH = 0;
     bool stop = false;
 
-    void lexer(std::string str);
+    std::vector<Token> lexer(std::string str);
     bool addToken(const std::string& token);
     void createToken(std::string_view token);
+    
+    std::vector<Token> getTokens() const {
+        return tokens;
+    }
 
 private:
     

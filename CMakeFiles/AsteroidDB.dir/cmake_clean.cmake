@@ -4,6 +4,10 @@ file(REMOVE_RECURSE
   "AsteroidDB.pdb"
   "CMakeFiles/AsteroidDB.dir/core/main.cpp.o"
   "CMakeFiles/AsteroidDB.dir/core/main.cpp.o.d"
+  "CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o"
+  "CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o.d"
+  "CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o"
+  "CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o.d"
   "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o"
   "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o.d"
 )

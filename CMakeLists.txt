@@ -5,5 +5,7 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_executable(
   AsteroidDB core/main.cpp          
-  core/sql/lexer/lexer.cpp)
+  core/sql/lexer/lexer.cpp
+  core/sql/ast/Parser.cpp
+  core/sql/ast/Node.cpp)
 

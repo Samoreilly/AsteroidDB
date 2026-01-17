@@ -7,7 +7,7 @@
 #include <vector> 
 
 
-void Lexer::lexer(std::string str) { 
+std::vector<Token> Lexer::lexer(std::string str) { 
 
     //std::cout << "ENTERING LEXER" << "\n";
 
@@ -68,7 +68,7 @@ void Lexer::lexer(std::string str) {
 
                 if(endIndex >= LENGTH) {
                     std::cout << "No terminating string literal";
-                    return;
+                    throw std::runtime_error("No terminating string literal");
                 }
 
                 std::string_view stringLiteral(str.data() + startIndex, endIndex - startIndex);
@@ -105,9 +105,11 @@ void Lexer::lexer(std::string str) {
 
         
     }
+    
 
+    return tokens;
     // std::cout << "PRINT" << "\n"; 
-    printTokens();
+    //printTokens();
     
 }
 

@@ -1,5 +1,7 @@
-CMakeFiles/AsteroidDB.dir/core/main.cpp.o: \
- /home/sam-o-reilly/AsteroidDB/core/main.cpp /usr/include/stdc-predef.h \
+CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o: \
+ /home/sam-o-reilly/AsteroidDB/core/sql/ast/Node.cpp \
+ /usr/include/stdc-predef.h \
+ /home/sam-o-reilly/AsteroidDB/core/sql/ast/Node.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/os_defines.h \
@@ -153,23 +155,12 @@ CMakeFiles/AsteroidDB.dir/core/main.cpp.o: \
  /usr/include/c++/13/bits/locale_facets.tcc \
  /usr/include/c++/13/bits/basic_ios.tcc \
  /usr/include/c++/13/bits/ostream.tcc /usr/include/c++/13/istream \
- /usr/include/c++/13/bits/istream.tcc \
- /home/sam-o-reilly/AsteroidDB/core/sql/lexer/lexer.h \
- /usr/include/c++/13/unordered_map \
- /usr/include/c++/13/bits/unordered_map.h \
- /usr/include/c++/13/bits/hashtable.h \
- /usr/include/c++/13/bits/hashtable_policy.h \
- /usr/include/c++/13/ext/aligned_buffer.h \
- /usr/include/c++/13/bits/enable_special_members.h \
- /usr/include/c++/13/bits/node_handle.h \
- /usr/include/c++/13/bits/erase_if.h /usr/include/c++/13/vector \
+ /usr/include/c++/13/bits/istream.tcc /usr/include/c++/13/vector \
  /usr/include/c++/13/bits/stl_uninitialized.h \
  /usr/include/c++/13/bits/stl_vector.h \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
- /home/sam-o-reilly/AsteroidDB/core/sql/lexer/TokenDef.h \
- /home/sam-o-reilly/AsteroidDB/core/sql/ast/Parser.h \
- /home/sam-o-reilly/AsteroidDB/core/sql/ast/Node.h \
+ /home/sam-o-reilly/AsteroidDB/core/sql/ast/../lexer/TokenDef.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h \
@@ -180,6 +171,7 @@ CMakeFiles/AsteroidDB.dir/core/main.cpp.o: \
  /usr/include/c++/13/bits/shared_ptr.h \
  /usr/include/c++/13/bits/shared_ptr_base.h \
  /usr/include/c++/13/bits/allocated_ptr.h \
+ /usr/include/c++/13/ext/aligned_buffer.h \
  /usr/include/c++/13/ext/concurrence.h \
  /usr/include/c++/13/bits/shared_ptr_atomic.h \
  /usr/include/c++/13/bits/atomic_base.h \
@@ -213,8 +205,12 @@ CMakeFiles/AsteroidDB.dir/core/main.cpp.o: \
  /usr/include/c++/13/pstl/execution_defs.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/ast/Expression.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/ast/Value.h \
- /usr/include/c++/13/variant /usr/include/c++/13/bits/parse_numbers.h \
+ /usr/include/c++/13/variant \
+ /usr/include/c++/13/bits/enable_special_members.h \
+ /usr/include/c++/13/bits/parse_numbers.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/ast/../../engine/Executor.h \
  /usr/include/c++/13/map /usr/include/c++/13/bits/stl_tree.h \
+ /usr/include/c++/13/bits/node_handle.h \
  /usr/include/c++/13/bits/stl_map.h \
- /usr/include/c++/13/bits/stl_multimap.h
+ /usr/include/c++/13/bits/stl_multimap.h \
+ /usr/include/c++/13/bits/erase_if.h

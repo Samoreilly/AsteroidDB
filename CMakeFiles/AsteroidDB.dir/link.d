@@ -4,6 +4,8 @@ AsteroidDB: \
   /usr/lib/gcc/x86_64-linux-gnu/13/crtbeginS.o \
   CMakeFiles/AsteroidDB.dir/core/main.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
@@ -42,6 +44,10 @@ AsteroidDB: \
 CMakeFiles/AsteroidDB.dir/core/main.cpp.o:
 
 CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so:
 

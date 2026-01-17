@@ -1,3 +1,4 @@
+#pragma once
 
 #include <iostream>
 #include "../lexer/TokenDef.h"
@@ -17,7 +18,7 @@ public:
 };
 
 class BinaryExpression : public Expression {
-
+public:
     //cases like id > 2, etc
     Expression* left;
     std::string op;
@@ -58,7 +59,7 @@ public:
     
 };
 
-class Identifier : Expression {
+class Identifier : public Expression {
 public:
 
     std::string token;
