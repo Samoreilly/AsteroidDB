@@ -137,6 +137,9 @@ bool Lexer::addToken(const std::string& token) {
     }else if(SYMBOLS.find(token) != SYMBOLS.end()){
         tokens.push_back({TokenType::SYMBOL, token});
         return true;
+    }else if(token == "true" || token == "false") {
+        tokens.push_back({TokenType::BOOLEAN, token});
+        return true;
     }else {    
         tokens.push_back({TokenType::IDENTIFIER, token});
         return true;

@@ -25,7 +25,8 @@ enum TokenType {
     OPERATOR,
     COMMA,
     SYMBOL,
-    STRING
+    STRING,
+    BOOLEAN
 };
 
 struct Token {

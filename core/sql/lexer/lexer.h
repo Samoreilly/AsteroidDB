@@ -114,6 +114,7 @@ private:
             case COMMA:      return "COMMA";
             case SYMBOL:     return "SYMBOL";
             case STRING:     return "STRING";
+            case BOOLEAN:    return "BOOLEAN";
             default:         return "UNKNOWN";
         }
     }

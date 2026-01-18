@@ -160,19 +160,19 @@ std::unique_ptr<Expression> Parser::parsePrimary() {
         }
     }
     
-
     if(check(STRING)) {
         Token str = next();
         return std::make_unique<Literal>(Value(str.sql));
     }
 
+    if(check(BOOLEAN))  {
+        Token b = next();
+        bool val = (b.sql == "true");
+        return std::make_unique<Literal>(Value(val));
+    }
+
     if(check(IDENTIFIER)) {
         Token id = next();
-        
-        if (id.sql == "true" || id.sql == "false") {
-            return std::make_unique<Literal>(Value(id.sql == "true"));
-        }
-        
         return std::make_unique<Identifier>(id.sql);
     }
     
