@@ -42,11 +42,13 @@ int main() {
     }
 
     try {
+        
+        std::string statement = "SELECT * FROM users WHERE (age > 18 AND country = 'US') OR (age > 21 AND country = 'UK')";
+
         Lexer lexer;
-        lexer.lexer("SELECT id, email FROM customers WHERE active = true");
+        lexer.lexer(statement);
         
-        std::cout << "\nselect name, age FROM users WHERE age > 18\n\n"; 
-        
+        std::cout << "\n" << statement << "\n\n\n";    
         Parser parser(lexer.getTokens());
         std::unique_ptr<Node> ast = parser.parse();
         
