@@ -43,7 +43,7 @@ int main() {
 
     try {
         
-        std::string statement = "SELECT * FROM users WHERE (age > 18 AND country = 'US') OR (age > 21 AND country = 'UK')";
+        std::string statement = "CREATE TABLE Products (ProductID INT, ProductName INTEGER, Price DECIMAL, InStock BOOLEAN);";
 
         Lexer lexer;
         lexer.lexer(statement);
@@ -52,11 +52,10 @@ int main() {
         Parser parser(lexer.getTokens());
         std::unique_ptr<Node> ast = parser.parse();
         
-        if(auto* selectStmt = dynamic_cast<SelectStatement*>(ast.get())) {
-
-            selectStmt->print();
+        if (auto* createStmt = dynamic_cast<CreateStatement*>(ast.get())) {
+            createStmt->print();
         }
-        
+                
 
         std::cout << "\nAbstract syntax tree built" << std::endl;
         

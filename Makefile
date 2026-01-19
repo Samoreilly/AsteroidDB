@@ -232,6 +232,54 @@ core/sql/lexer/lexer.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.s
 .PHONY : core/sql/lexer/lexer.cpp.s
 
+core/sql/parser/Create.o: core/sql/parser/Create.cpp.o
+.PHONY : core/sql/parser/Create.o
+
+# target to build an object file
+core/sql/parser/Create.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o
+.PHONY : core/sql/parser/Create.cpp.o
+
+core/sql/parser/Create.i: core/sql/parser/Create.cpp.i
+.PHONY : core/sql/parser/Create.i
+
+# target to preprocess a source file
+core/sql/parser/Create.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.i
+.PHONY : core/sql/parser/Create.cpp.i
+
+core/sql/parser/Create.s: core/sql/parser/Create.cpp.s
+.PHONY : core/sql/parser/Create.s
+
+# target to generate assembly for a file
+core/sql/parser/Create.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.s
+.PHONY : core/sql/parser/Create.cpp.s
+
+core/sql/parser/Select.o: core/sql/parser/Select.cpp.o
+.PHONY : core/sql/parser/Select.o
+
+# target to build an object file
+core/sql/parser/Select.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o
+.PHONY : core/sql/parser/Select.cpp.o
+
+core/sql/parser/Select.i: core/sql/parser/Select.cpp.i
+.PHONY : core/sql/parser/Select.i
+
+# target to preprocess a source file
+core/sql/parser/Select.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.i
+.PHONY : core/sql/parser/Select.cpp.i
+
+core/sql/parser/Select.s: core/sql/parser/Select.cpp.s
+.PHONY : core/sql/parser/Select.s
+
+# target to generate assembly for a file
+core/sql/parser/Select.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.s
+.PHONY : core/sql/parser/Select.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -254,6 +302,12 @@ help:
 	@echo "... core/sql/lexer/lexer.o"
 	@echo "... core/sql/lexer/lexer.i"
 	@echo "... core/sql/lexer/lexer.s"
+	@echo "... core/sql/parser/Create.o"
+	@echo "... core/sql/parser/Create.i"
+	@echo "... core/sql/parser/Create.s"
+	@echo "... core/sql/parser/Select.o"
+	@echo "... core/sql/parser/Select.i"
+	@echo "... core/sql/parser/Select.s"
 .PHONY : help
 
 

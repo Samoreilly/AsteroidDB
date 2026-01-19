@@ -71,7 +71,7 @@ public:
         {"insert", Statement::INSERT},
         {"delete", Statement::DELETE},
         {"update", Statement::UPDATE},
-        {"CREATE", Statement::CREATE}
+        {"create", Statement::CREATE}
     };
 
 

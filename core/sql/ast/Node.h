@@ -2,13 +2,16 @@
 
 #include <iostream>
 #include <vector>
-
 #include "../lexer/TokenDef.h"
 #include <memory>
-#include "Expression.h"
-
 
 class Expression;
+
+struct CreateColumn {
+    std::string name;        // Column name
+    std::string type;        // INT, VARCHAR, DECIMAL, etc.
+    std::vector<std::string> constraints;  // PRIMARY KEY, NOT NULL, etc.
+};
 
 class Node {
 public:
@@ -29,24 +32,7 @@ public:
         std::cout << "Executing select from TABLE: " << table << "\n";
     }
     
-    void print() const {
-        std::cout << "SelectStatement {" << std::endl;
-        std::cout << "  columns: [";
-        for (size_t i = 0; i < columns.size(); i++) {
-            std::cout << columns[i];
-            if (i < columns.size() - 1) std::cout << ", ";
-        }
-        std::cout << "]" << std::endl;
-        std::cout << "  table: " << table << std::endl;
-        std::cout << "  whereClause: ";
-        if (whereClause) {
-            std::cout << std::endl;
-            whereClause->print(2);  // Pass indent level
-        } else {
-            std::cout << "null" << std::endl;
-        }
-        std::cout << "}" << std::endl;
-    }
+    void print() const;
     
     SelectStatement() = default;
     ~SelectStatement() override;
@@ -78,11 +64,18 @@ public:
 class CreateStatement : public Node {
 public:
 
-    std::vector<std::string> columns;
+    std::vector<CreateColumn> columns;
     std::string table;
+    std::string database;
 
     void exec() override {
 
     }
+    
+    void print() const;
+    
+    CreateStatement() = default;
+    ~CreateStatement() override;
+
 };
 

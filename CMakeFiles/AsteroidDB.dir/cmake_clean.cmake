@@ -10,6 +10,10 @@ file(REMOVE_RECURSE
   "CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o.d"
   "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o"
   "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o.d"
+  "CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o"
+  "CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o.d"
+  "CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o"
+  "CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o.d"
 )
 
 # Per-language clean rules from dependency scanning.

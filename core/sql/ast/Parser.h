@@ -13,18 +13,7 @@ class Parser {
 
     //entry point
     std::unique_ptr<Node> parseStatement();
-    
-    std::unique_ptr<Node> parseSelect();
-    std::unique_ptr<Node> parseCreate();
-    std::unique_ptr<Node> parseUpdate();
-    std::unique_ptr<Node> parseDelete();
-    
-    std::unique_ptr<Expression> parseExpression();
-    std::unique_ptr<Expression> parseOrExpression();
-    std::unique_ptr<Expression> parseAndExpression();
-    std::unique_ptr<Expression> parseComparison();
-    std::unique_ptr<Expression> parsePrimary(); 
-
+  
 
 public:
 
