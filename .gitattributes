@@ -1,0 +1,6 @@
+# Ignore CMake files in GitHub language statistics
+*.cmake linguist-detectable=false
+CMakeLists.txt linguist-detectable=false
+CMakeFiles/** linguist-detectable=false
+Makefile linguist-detectable=false
+CMakeCache.txt linguist-detectable=false
