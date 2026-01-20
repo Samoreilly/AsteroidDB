@@ -7,6 +7,7 @@
 #include <memory>
 #include "Expression.h"
 #include <unordered_set>
+#include <optional>
 
 class Parser {
 
@@ -40,6 +41,56 @@ public:
         "references"    // REFERENCES table(column)
     };
 
+    static inline const std::unordered_set<std::string> SQL_TYPES = {
+        // numeric
+        "int",
+        "integer",
+        "smallint",
+        "bigint",
+        "tinyint",
+        "decimal",
+        "numeric",
+        "float",
+        "real",
+        "double",
+
+        // string
+        "char",
+        "varchar",
+        "nchar",
+        "nvarchar",
+        "text",
+        "clob",
+
+        // date/time
+        "date",
+        "time",
+        "datetime",
+        "timestamp",
+        "year",
+
+        // boolean
+        "boolean",
+        "bool",
+
+        // binary
+        "binary",
+        "varbinary",
+        "blob",
+
+        // auto / identity
+        "serial",
+        "bigserial",
+        "identity",
+        "auto_increment",
+
+        // special
+        "uuid",
+        "json",
+        "jsonb",
+        "enum",
+        "set"
+    };
 
     std::vector<Token> getTokens() const {
         return tokens;
@@ -96,6 +147,16 @@ public:
             throw std::runtime_error(msg);
         }
         return next();
+    }
+    
+    bool peekNext(const std::string& expected = "") {
+        if(pos + 1 >= tokens.size())throw std::runtime_error("MALFORMED SQL");
+
+        if(!expected.empty() && tokens.at(pos + 1).sql == expected) {
+            return true;
+        } 
+
+        return false;
     }
 
     bool lookBack(size_t n, std::string expected = "") {

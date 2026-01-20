@@ -33,28 +33,23 @@ std::unique_ptr<Node> Create::parseCreate() {
             CreateColumn col;
             col.name = parser.consume(IDENTIFIER).sql;            
             
-            std::string dataType = parser.peek().sql;
-                
-            if(dataType == "varchar") {
-                col.type = parseVarchar();
-            
-            }else if(dataType == "decimal") {
-                col.type = parseDecimal();
-            
+            Token tok = parser.consume(IDENTIFIER);
+
+            std::string dataType = tok.sql;
+
+            if(parser.check(SYMBOL, "(")) {
+                col.type = parseVariableLength(tok); 
             }else {
-                col.type = parser.consume(IDENTIFIER).sql;
+               col.type = dataType; 
             }
+           
             //if there is constraints
 
             std::string checkNext = parser.peek().sql;
         
             //CREATE TABLE Products (ProductID INT PRIMARY KEY, ProductName INTEGER, Price DECIMAL, InStock BOOLEAN);
-
-            //TODO: Clustered must be paired with primary key
-
-            std::cout << "CURRENT TOKEN: " << parser.peek().sql << "\n";
-
-              
+            //TODO: Clustered must be paired
+            
             while(parser.check(KEYWORD)) {
 
                 std::string con = parser.peek().sql;
@@ -88,7 +83,7 @@ std::unique_ptr<Node> Create::parseCreate() {
                     parser.consume(KEYWORD, "clustered");
                         
                     bool foundPair = false;
-                    for(const auto& c : col.constraints) {
+                     for(const auto& c : col.constraints) {
                         if(c == "primary key" || c == "unique") {
                             foundPair = true;
                         }
@@ -121,7 +116,6 @@ std::unique_ptr<Node> Create::parseCreate() {
 
             createStatement->columns.push_back(col);
         
-            std::cout << "CURRENT TOKEN: " << parser.peek().sql << "\n";
         }while(parser.match(SYMBOL, ","));
       
         parser.consume(SYMBOL, ")");
@@ -137,42 +131,28 @@ std::unique_ptr<Node> Create::parseCreate() {
 
 }
 
-
-std::string Create::parseVarchar() {
-
-    parser.consume(IDENTIFIER, "varchar");
-    parser.consume(SYMBOL, "(");
-    std::string size = parser.consume(NUMBER).sql;
-    
-    parser.consume(SYMBOL, ")");
-    
-    std::string res = "varchar(" + size + ")";
-    std::cout << res;
-    return res; 
-}
-
-std::string Create::parseDecimal() {
+std::string Create::parseVariableLength(const Token& dataType) {
 
     std::string builder;
+    builder.reserve(15);
     
-    //sets initial capacity of string in characters
-    builder.reserve(10);
-
-    parser.consume(IDENTIFIER, "decimal");
     parser.consume(SYMBOL, "(");
+
+    if(parser.SQL_TYPES.find(dataType.sql) == parser.SQL_TYPES.end()) throw std::runtime_error("DATA TYPE DOESN'T EXIST");
+
+    builder += dataType.sql;
+    builder += "(";
 
     while(!parser.check(SYMBOL, ")")) {
 
-         builder += parser.consume(NUMBER).sql;
+        builder += parser.consume(NUMBER).sql;
 
-        if(parser.match(SYMBOL, ",")){
+        if(parser.match(SYMBOL, ",")) {
             builder += ",";
         }
-
     }
-    
-    std::string res  = "decimal(" + builder + ")";
-    std::cout << res;
-    return res;
-}
 
+    builder += parser.consume(SYMBOL, ")").sql;
+
+    return builder;
+}

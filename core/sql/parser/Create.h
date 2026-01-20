@@ -8,9 +8,8 @@ class Parser;
 
 class Create { 
     Parser& parser;
-    
-    std::string parseVarchar();
-    std::string parseDecimal();
+
+    std::string parseVariableLength(const Token& tok);
 
 public:
 

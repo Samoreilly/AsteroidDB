@@ -219,4 +219,4 @@ CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o: \
  /usr/include/c++/13/unordered_set \
  /usr/include/c++/13/bits/unordered_set.h \
  /usr/include/c++/13/bits/hashtable.h \
- /usr/include/c++/13/bits/hashtable_policy.h
+ /usr/include/c++/13/bits/hashtable_policy.h /usr/include/c++/13/optional
