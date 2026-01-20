@@ -20,6 +20,7 @@ class Select {
     std::unique_ptr<Expression> parsePrimary();
 
 public:
+
     Select(Parser& p) : parser(p) {}
     std::unique_ptr<Expression> parseExpression();
     std::unique_ptr<Node> parseSelect();

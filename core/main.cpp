@@ -43,8 +43,8 @@ int main() {
 
     try {
         
-        std::string statement = "CREATE TABLE Orders (OrderID INT AUTO_INCREMENT PRIMARY KEY CLUSTERED, CustomerID INT, name VARCHAR(50), OrderDate DATE, TotalAmount DECIMAL(10, 2));";
-
+        std::string statement = "CREATE TABLE Orders (OrderID INT PRIMARY KEY, CustomerID INT NOT NULL, OrderDate DATE, TotalAmount DECIMAL(10,2) NOT NULL, FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID));";
+    
         Lexer lexer;
         lexer.lexer(statement);
         

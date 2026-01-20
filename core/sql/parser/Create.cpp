@@ -44,13 +44,12 @@ std::unique_ptr<Node> Create::parseCreate() {
             }
            
             //if there is constraints
-
             std::string checkNext = parser.peek().sql;
         
             //CREATE TABLE Products (ProductID INT PRIMARY KEY, ProductName INTEGER, Price DECIMAL, InStock BOOLEAN);
             //TODO: Clustered must be paired
             
-            while(parser.check(KEYWORD)) {
+            while(parser.check(KEYWORD) || parser.check(OPERATOR)) {
 
                 std::string con = parser.peek().sql;
                 
@@ -70,10 +69,15 @@ std::unique_ptr<Node> Create::parseCreate() {
                     col.constraints.push_back("primary key");
                 
                 }else if(con == "foreign") {
-                    parser.consume(KEYWORD, "foreign");
+                    parser.consume(IDENTIFIER, "foreign");
                     parser.consume(IDENTIFIER, "key");
-
+                    
                     col.constraints.push_back("foreign key");
+
+                    if(parser.check(IDENTIFIER, "references")) {
+                        parser.consume(IDENTIFIER, "references");
+                        parseForeignKey(createStatement);
+                    }
                 
                 }else if(con == "unique") {
                     parser.consume(KEYWORD, "unique");
@@ -96,10 +100,10 @@ std::unique_ptr<Node> Create::parseCreate() {
                     col.constraints.push_back("clustered");
                 
                 }else if(con == "not") {
-                    parser.consume(IDENTIFIER, "not");
+                    parser.consume(OPERATOR, "not");
                     parser.consume(IDENTIFIER, "null");
-
-                    col.constraints.push_back("NOT NULL");
+           
+                    col.constraints.push_back("not null");
                 
                 }else if(con == "auto_increment") {
                     parser.consume(KEYWORD, "auto_increment");
@@ -115,9 +119,40 @@ std::unique_ptr<Node> Create::parseCreate() {
             }
 
             createStatement->columns.push_back(col);
-        
-        }while(parser.match(SYMBOL, ","));
-      
+    
+        // check if there's a comma followed by another column or a constraint
+        if(parser.match(SYMBOL, ",")) {
+            
+            if(parser.check(IDENTIFIER, "foreign") || parser.check(IDENTIFIER, "unique") || 
+               parser.check(IDENTIFIER, "primary") || parser.check(KEYWORD, "foreign") || 
+               parser.check(KEYWORD, "unique") || parser.check(KEYWORD, "primary")) {
+                // break out of column parsing to parse constraints
+                break;
+            }
+
+            // continue parsing
+        } else {
+            // no commas, then exit and parse table level constraints like foreign keys
+            break;
+        }        
+        }while(true);
+
+        //above parses columns
+        //parse table level constraints
+
+        while(parser.check(IDENTIFIER)) {
+            std::string constraint = parser.peek().sql;
+            
+            if(constraint == "foreign") {
+                parser.consume(IDENTIFIER, "foreign");
+                parser.consume(IDENTIFIER, "key");
+                parseForeignKey(createStatement);
+                
+                parser.match(SYMBOL, ",");
+            } else {
+                break;
+            }
+        }
         parser.consume(SYMBOL, ")");
         parser.match(SYMBOL, ";");
         
@@ -138,7 +173,10 @@ std::string Create::parseVariableLength(const Token& dataType) {
     
     parser.consume(SYMBOL, "(");
 
-    if(parser.SQL_TYPES.find(dataType.sql) == parser.SQL_TYPES.end()) throw std::runtime_error("DATA TYPE DOESN'T EXIST");
+    if(parser.SQL_TYPES.find(dataType.sql) == parser.SQL_TYPES.end()) {
+        std::cout << dataType.sql;
+        throw std::runtime_error("DATA TYPE DOESN'T EXIST");
+    }
 
     builder += dataType.sql;
     builder += "(";
@@ -156,3 +194,42 @@ std::string Create::parseVariableLength(const Token& dataType) {
 
     return builder;
 }
+
+void Create::parseForeignKey(const std::unique_ptr<CreateStatement>& createStatement, const std::string& columnName) {
+    
+    ForeignKey fk;
+    
+    //this handles column lever foreign keys and table level;
+    if(!columnName.empty()) {
+        //e.g. // Column-level: columnName already known
+        fk.columnNames.push_back(columnName);
+    } else {
+        
+        //FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID)
+        parser.consume(SYMBOL, "(");
+        do {
+            fk.columnNames.push_back(parser.consume(IDENTIFIER).sql);
+        
+        }while(parser.match(SYMBOL, ","));
+        
+        parser.consume(SYMBOL, ")");
+        parser.consume(IDENTIFIER, "references");
+    }
+
+    fk.referencedTable = parser.consume(IDENTIFIER).sql;
+    parser.consume(SYMBOL, "(");
+
+    do {
+        fk.referencedColumns.push_back(parser.consume(IDENTIFIER).sql);
+    }while(parser.match(SYMBOL, ","));
+
+    parser.consume(SYMBOL, ")");
+
+    createStatement->foreignKeys.push_back(fk);
+}
+
+
+
+
+
+

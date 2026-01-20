@@ -14,8 +14,7 @@ std::vector<Token> Lexer::lexer(std::string str) {
     LENGTH = str.length();
     
     boost::algorithm::to_lower(str);
-
-    
+  
     while(endIndex < LENGTH) {
         char c = str[endIndex];
      

@@ -30,18 +30,14 @@ CreateStatement::~CreateStatement() = default;
 
 void CreateStatement::print() const {
     std::cout << "CreateStatement {" << std::endl;
-
     if (!database.empty()) {
         std::cout << "  database: " << database << std::endl;
     }
-
     std::cout << "  table: " << table << std::endl;
     std::cout << "  columns: [" << std::endl;
-
     for (size_t i = 0; i < columns.size(); ++i) {
         const auto& col = columns[i];
         std::cout << "    " << col.name << " " << col.type;
-
         if (!col.constraints.empty()) {
             std::cout << " (";
             for (size_t j = 0; j < col.constraints.size(); ++j) {
@@ -50,14 +46,34 @@ void CreateStatement::print() const {
             }
             std::cout << ")";
         }
-
         if (i < columns.size() - 1)
             std::cout << ",";
         std::cout << std::endl;
     }
-
     std::cout << "  ]" << std::endl;
+    
+    if (!foreignKeys.empty()) {
+        std::cout << "  foreignKeys: [" << std::endl;
+        for (size_t i = 0; i < foreignKeys.size(); ++i) {
+            const auto& fk = foreignKeys[i];
+            std::cout << "    FOREIGN KEY (";
+            for (size_t j = 0; j < fk.columnNames.size(); ++j) {
+                std::cout << fk.columnNames[j];
+                if (j < fk.columnNames.size() - 1) std::cout << ", ";
+            }
+            std::cout << ") REFERENCES " << fk.referencedTable << " (";
+            for (size_t j = 0; j < fk.referencedColumns.size(); ++j) {
+                std::cout << fk.referencedColumns[j];
+                if (j < fk.referencedColumns.size() - 1) std::cout << ", ";
+            }
+            std::cout << ")";
+            if (i < foreignKeys.size() - 1)
+                std::cout << ",";
+            std::cout << std::endl;
+        }
+        std::cout << "  ]" << std::endl;
+    }
+    
     std::cout << "}" << std::endl;
 }
-
 

@@ -13,6 +13,12 @@ struct CreateColumn {
     std::vector<std::string> constraints;  // PRIMARY KEY, NOT NULL, etc.
 };
 
+struct ForeignKey {
+    std::vector<std::string> columnNames;
+    std::string referencedTable;
+    std::vector<std::string> referencedColumns;
+};
+
 class Node {
 public:
 
@@ -64,6 +70,7 @@ class CreateStatement : public Node {
 public:
 
     std::vector<CreateColumn> columns;
+    std::vector<ForeignKey> foreignKeys;
     std::string table;
     std::string database;
     

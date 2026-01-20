@@ -7,9 +7,13 @@
 class Parser;
 
 class Create { 
-    Parser& parser;
 
+    Parser& parser;
     std::string parseVariableLength(const Token& tok);
+    
+    void parseForeignKey(
+        const std::unique_ptr<CreateStatement>& createStatement,
+        const std::string& columnName = "");
 
 public:
 
