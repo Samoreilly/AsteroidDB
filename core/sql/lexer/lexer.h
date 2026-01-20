@@ -22,7 +22,10 @@ public:
         {"into",   TokenType::KEYWORD},
         {"values", TokenType::KEYWORD},
         {"table",  TokenType::KEYWORD},
-        {"set", TokenType::KEYWORD}
+        {"set", TokenType::KEYWORD},
+        {"primary", TokenType::KEYWORD},
+        {"clustered", TokenType::KEYWORD},
+        {"unique", TokenType::KEYWORD}
     };
 
 
@@ -92,18 +95,6 @@ public:
         return tokens;
     }
 
-private:
-    
-    void consec_symbols(std::string& token);
-
-    void printTokens() {
-        
-        for(Token t : tokens) {
-        
-            std::cout << "TokenType: " << tokenTypeToString(t.token) << "\n" << "SQL token:" << t.sql << "\n";
-        }
-    }
-
     std::string tokenTypeToString(TokenType t) {
         
         switch(t) {
@@ -116,6 +107,18 @@ private:
             case STRING:     return "STRING";
             case BOOLEAN:    return "BOOLEAN";
             default:         return "UNKNOWN";
+        }
+    }
+
+private:
+    
+    void consec_symbols(std::string& token);
+
+    void printTokens() {
+        
+        for(Token t : tokens) {
+        
+            std::cout << "TokenType: " << tokenTypeToString(t.token) << "\n" << "SQL token:" << t.sql << "\n";
         }
     }
     

@@ -48,6 +48,10 @@ int main() {
         Lexer lexer;
         lexer.lexer(statement);
         
+        for(const auto& tok : lexer.getTokens()) {
+            std::cout << "Token-type: " << lexer.tokenTypeToString(tok.token) << "\n" << "Token-name: " << tok.sql << "\n\n\n";
+        }
+
         std::cout << "\n" << statement << "\n\n\n";    
         Parser parser(lexer.getTokens());
         std::unique_ptr<Node> ast = parser.parse();
@@ -62,7 +66,6 @@ int main() {
     } catch (const std::exception& e) {
         std::cerr << "Error-> " << e.what() << std::endl;
         return 1;
-    }
-    
+    }    
     return 0;
 }

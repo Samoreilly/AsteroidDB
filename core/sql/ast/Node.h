@@ -41,7 +41,6 @@ public:
 class InsertStatement : public Node {
 public:
     
-
     std::vector<std::string> columns;
     std::string table;
     
@@ -67,6 +66,9 @@ public:
     std::vector<CreateColumn> columns;
     std::string table;
     std::string database;
+    
+    bool primaryKey = false;
+    bool clustered = false;
 
     void exec() override {
 

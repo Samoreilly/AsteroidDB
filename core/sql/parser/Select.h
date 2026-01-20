@@ -10,6 +10,10 @@ class Parser;
 class Select {
     Parser& parser;
 
+    bool primaryKey = false;
+    bool autoIncrement = false;
+    bool clustered = false;
+
     std::unique_ptr<Expression> parseOrExpression();
     std::unique_ptr<Expression> parseAndExpression();
     std::unique_ptr<Expression> parseComparison();

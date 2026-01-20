@@ -27,20 +27,37 @@ void SelectStatement::print() const {
 
 CreateStatement::~CreateStatement() = default;
 
+
 void CreateStatement::print() const {
     std::cout << "CreateStatement {" << std::endl;
+
     if (!database.empty()) {
         std::cout << "  database: " << database << std::endl;
     }
-    std::cout << "  table: " << table << std::endl;
-    std::cout << "  columns: [";
 
-    for (size_t i = 0; i < columns.size(); i++) {
-        std::cout << columns[i].name << " " << columns[i].type;
-        if (i < columns.size() - 1) std::cout << ", ";
+    std::cout << "  table: " << table << std::endl;
+    std::cout << "  columns: [" << std::endl;
+
+    for (size_t i = 0; i < columns.size(); ++i) {
+        const auto& col = columns[i];
+        std::cout << "    " << col.name << " " << col.type;
+
+        if (!col.constraints.empty()) {
+            std::cout << " (";
+            for (size_t j = 0; j < col.constraints.size(); ++j) {
+                std::cout << col.constraints[j];
+                if (j < col.constraints.size() - 1) std::cout << ", ";
+            }
+            std::cout << ")";
+        }
+
+        if (i < columns.size() - 1)
+            std::cout << ",";
+        std::cout << std::endl;
     }
-    
-    std::cout << "]" << std::endl;
+
+    std::cout << "  ]" << std::endl;
     std::cout << "}" << std::endl;
 }
+
 

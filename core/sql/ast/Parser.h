@@ -2,9 +2,11 @@
 
 #include "Node.h"
 #include "../lexer/TokenDef.h"
+#include <stdexcept>
 #include <vector>
 #include <memory>
 #include "Expression.h"
+#include <unordered_set>
 
 class Parser {
 
@@ -14,10 +16,30 @@ class Parser {
     //entry point
     std::unique_ptr<Node> parseStatement();
   
-
 public:
 
     Parser(const std::vector<Token> tokens) : tokens(std::move(tokens)) {}; 
+
+
+    static inline const std::unordered_set<std::string> CONSTRAINT_KEYWORDS = {
+
+        "primary",      // PRIMARY KEY
+        "foreign",      // FOREIGN KEY
+        "unique",       // UNIQUE
+        "not",          // NOT NULL
+        "default",      // DEFAULT value
+        "check",        // CHECK condition
+        "auto_increment", // AUTO_INCREMENT (MySQL)
+        "identity",     // IDENTITY (SQL Server)
+        "autoincrement", // AUTOINCREMENT (SQLite)
+        
+        "clustered",    // CLUSTERED index
+        "nonclustered", // NONCLUSTERED index
+        "index",        // INDEX
+        
+        "references"    // REFERENCES table(column)
+    };
+
 
     std::vector<Token> getTokens() const {
         return tokens;
@@ -74,6 +96,17 @@ public:
             throw std::runtime_error(msg);
         }
         return next();
+    }
+
+    bool lookBack(size_t n, std::string expected = "") {
+        if(pos - n < 0) return false;
+            
+        if(tokens.at(pos - n).sql == expected) {
+            return true;
+        }
+        
+        return false;
+
     }
 };
 

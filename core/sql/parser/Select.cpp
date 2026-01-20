@@ -20,6 +20,7 @@ std::unique_ptr<Node> Select::parseSelect() {
         //select specific columns
 
         do {
+        
             Token col = parser.consume(IDENTIFIER);
             select->columns.push_back(col.sql);
         
@@ -37,11 +38,7 @@ std::unique_ptr<Node> Select::parseSelect() {
         select->whereClause = parseExpression();
     }
     
-    // Original code had this, preserving it though it looks odd (maybe expecting semicolon?)
-    // match(SYMBOL, "where"); 
-    // It's likely a mistake or expecting something else. I will comment it out or leave it if it compiles (match returns bool).
-    parser.match(SYMBOL, "where");
-    
+   
     return select;
 }
 
