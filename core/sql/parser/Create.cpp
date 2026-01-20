@@ -3,6 +3,7 @@
 #include "../ast/Parser.h"
 #include "../ast/Node.h"
 #include <stdexcept>
+#include <string>
 
 std::unique_ptr<Node> Create::parseCreate() {
     
@@ -11,6 +12,7 @@ std::unique_ptr<Node> Create::parseCreate() {
     parser.consume(KEYWORD, "create");
 
     std::string path = parser.consume(KEYWORD).sql;
+    
     std::string name = parser.consume(IDENTIFIER).sql;
 
     //get next token to see if were creating a TABLE, database etc
@@ -29,9 +31,19 @@ std::unique_ptr<Node> Create::parseCreate() {
         do {
 
             CreateColumn col;
-            col.name = parser.consume(IDENTIFIER).sql;
-            col.type = parser.consume(IDENTIFIER).sql;
+            col.name = parser.consume(IDENTIFIER).sql;            
+            
+            std::string dataType = parser.peek().sql;
                 
+            if(dataType == "varchar") {
+                col.type = parseVarchar();
+            
+            }else if(dataType == "decimal") {
+                col.type = parseDecimal();
+            
+            }else {
+                col.type = parser.consume(IDENTIFIER).sql;
+            }
             //if there is constraints
 
             std::string checkNext = parser.peek().sql;
@@ -43,7 +55,6 @@ std::unique_ptr<Node> Create::parseCreate() {
             std::cout << "CURRENT TOKEN: " << parser.peek().sql << "\n";
 
               
-                
             while(parser.check(KEYWORD)) {
 
                 std::string con = parser.peek().sql;
@@ -83,18 +94,23 @@ std::unique_ptr<Node> Create::parseCreate() {
                         }
                     }
 
-                    
                     if(!foundPair) {
                         throw std::runtime_error("CLUSTERED MUST BE PAIRED");
                     }
 
                     col.constraints.push_back("clustered");
                 
-                }else if(con == "keyword") {
+                }else if(con == "not") {
                     parser.consume(IDENTIFIER, "not");
                     parser.consume(IDENTIFIER, "null");
 
                     col.constraints.push_back("NOT NULL");
+                
+                }else if(con == "auto_increment") {
+                    parser.consume(KEYWORD, "auto_increment");
+
+                    col.constraints.push_back("auto_increment");
+                
                 }else {
                     std::cerr << "UNKOWN CONSTRAINT USED";
                     parser.consume(IDENTIFIER); 
@@ -119,5 +135,44 @@ std::unique_ptr<Node> Create::parseCreate() {
     
     return createStatement;
 
+}
+
+
+std::string Create::parseVarchar() {
+
+    parser.consume(IDENTIFIER, "varchar");
+    parser.consume(SYMBOL, "(");
+    std::string size = parser.consume(NUMBER).sql;
+    
+    parser.consume(SYMBOL, ")");
+    
+    std::string res = "varchar(" + size + ")";
+    std::cout << res;
+    return res; 
+}
+
+std::string Create::parseDecimal() {
+
+    std::string builder;
+    
+    //sets initial capacity of string in characters
+    builder.reserve(10);
+
+    parser.consume(IDENTIFIER, "decimal");
+    parser.consume(SYMBOL, "(");
+
+    while(!parser.check(SYMBOL, ")")) {
+
+         builder += parser.consume(NUMBER).sql;
+
+        if(parser.match(SYMBOL, ",")){
+            builder += ",";
+        }
+
+    }
+    
+    std::string res  = "decimal(" + builder + ")";
+    std::cout << res;
+    return res;
 }
 

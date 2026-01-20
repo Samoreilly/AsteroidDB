@@ -43,7 +43,7 @@ int main() {
 
     try {
         
-        std::string statement = "CREATE TABLE Products (ProductID INT, ProductName INTEGER, Price DECIMAL, InStock BOOLEAN);";
+        std::string statement = "CREATE TABLE Orders (OrderID INT AUTO_INCREMENT PRIMARY KEY CLUSTERED, CustomerID INT, name VARCHAR(50), OrderDate DATE, TotalAmount DECIMAL(10, 2));";
 
         Lexer lexer;
         lexer.lexer(statement);

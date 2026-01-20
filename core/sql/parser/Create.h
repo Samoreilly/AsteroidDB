@@ -8,6 +8,9 @@ class Parser;
 
 class Create { 
     Parser& parser;
+    
+    std::string parseVarchar();
+    std::string parseDecimal();
 
 public:
 

@@ -51,7 +51,6 @@ std::vector<Token> Lexer::lexer(std::string str) {
         }
             
         if(isSymbol(c)) {
-            
 
             if(c == '\'') {
                 

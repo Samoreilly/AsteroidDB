@@ -25,7 +25,8 @@ public:
         {"set", TokenType::KEYWORD},
         {"primary", TokenType::KEYWORD},
         {"clustered", TokenType::KEYWORD},
-        {"unique", TokenType::KEYWORD}
+        {"unique", TokenType::KEYWORD},
+        {"auto_increment", TokenType::KEYWORD}
     };
 
 
