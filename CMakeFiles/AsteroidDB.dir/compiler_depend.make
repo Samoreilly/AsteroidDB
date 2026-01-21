@@ -1567,6 +1567,7 @@ CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o: core/sql/parser/Create.c
   core/sql/ast/Parser.h \
   core/sql/ast/Value.h \
   core/sql/parser/Create.h \
+  core/sql/parser/Select.h \
   /usr/include/alloca.h \
   /usr/include/asm-generic/errno-base.h \
   /usr/include/asm-generic/errno.h \

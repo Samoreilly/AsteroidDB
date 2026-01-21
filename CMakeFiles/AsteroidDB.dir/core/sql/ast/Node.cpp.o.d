@@ -161,6 +161,7 @@ CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o: \
  /usr/include/c++/13/bits/stl_bvector.h \
  /usr/include/c++/13/bits/vector.tcc \
  /home/sam-o-reilly/AsteroidDB/core/sql/ast/../lexer/TokenDef.h \
+ /home/sam-o-reilly/AsteroidDB/core/sql/ast/Expression.h \
  /usr/include/c++/13/memory /usr/include/c++/13/bits/stl_tempbuf.h \
  /usr/include/c++/13/bits/stl_raw_storage_iter.h \
  /usr/include/c++/13/bits/align.h \
@@ -203,7 +204,6 @@ CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o: \
  /usr/include/c++/13/bits/ranges_algobase.h \
  /usr/include/c++/13/pstl/glue_memory_defs.h \
  /usr/include/c++/13/pstl/execution_defs.h \
- /home/sam-o-reilly/AsteroidDB/core/sql/ast/Expression.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/ast/Value.h \
  /usr/include/c++/13/variant \
  /usr/include/c++/13/bits/enable_special_members.h \

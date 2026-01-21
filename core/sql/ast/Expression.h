@@ -56,6 +56,27 @@ public:
     }
 };
 
+class CheckExpression : public Expression {
+public:
+    std::unique_ptr<Expression> cond;
+
+    explicit CheckExpression(std::unique_ptr<Expression> condition)
+        : cond(std::move(condition)) {}
+
+    Value eval(Executor* executor) override {
+        return cond->eval(executor);
+    }
+
+    void print(int indent = 0) const override {
+        std::string indentStr(indent, ' ');
+        std::cout << indentStr << "CheckExpression {" << std::endl;
+        cond->print(indent + 2);
+        std::cout << indentStr << "}" << std::endl;
+    }
+};
+
+
+
 class Literal : public Expression {
 public:
     Value value;

@@ -3,14 +3,17 @@
 #include <iostream>
 #include <vector>
 #include "../lexer/TokenDef.h"
+#include "Expression.h"
 #include <memory>
 
+class CheckExpression;
 class Expression;
 
 struct CreateColumn {
     std::string name;        // Column name
     std::string type;        // INT, VARCHAR, DECIMAL, etc.
     std::vector<std::string> constraints;  // PRIMARY KEY, NOT NULL, etc.
+    std::unique_ptr<CheckExpression> check;
 };
 
 struct ForeignKey {
@@ -71,6 +74,7 @@ public:
 
     std::vector<CreateColumn> columns;
     std::vector<ForeignKey> foreignKeys;
+
     std::string table;
     std::string database;
     
@@ -87,4 +91,3 @@ public:
     ~CreateStatement() override;
 
 };
-

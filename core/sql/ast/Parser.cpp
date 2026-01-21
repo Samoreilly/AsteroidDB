@@ -45,3 +45,5 @@ std::unique_ptr<Node> Parser::parseStatement() {
         default: throw std::runtime_error("NO PARSE TYPE COULD BE FOUND");
     };
 }
+
+

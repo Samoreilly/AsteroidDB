@@ -1,7 +1,6 @@
 CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o: \
  /home/sam-o-reilly/AsteroidDB/core/sql/parser/Create.cpp \
  /usr/include/stdc-predef.h \
- /home/sam-o-reilly/AsteroidDB/core/sql/parser/Create.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/parser/../ast/Expression.h \
  /usr/include/c++/13/iostream /usr/include/c++/13/bits/requires_hosted.h \
  /usr/include/x86_64-linux-gnu/c++/13/bits/c++config.h \
@@ -215,6 +214,8 @@ CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o: \
  /usr/include/c++/13/bits/stl_map.h \
  /usr/include/c++/13/bits/stl_multimap.h \
  /usr/include/c++/13/bits/erase_if.h \
+ /home/sam-o-reilly/AsteroidDB/core/sql/parser/Select.h \
+ /home/sam-o-reilly/AsteroidDB/core/sql/parser/Create.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/parser/../ast/Parser.h \
  /usr/include/c++/13/unordered_set \
  /usr/include/c++/13/bits/unordered_set.h \

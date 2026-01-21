@@ -1,4 +1,5 @@
-
+#include "../ast/Expression.h"
+#include "Select.h"
 #include "Create.h"
 #include "../ast/Parser.h"
 #include "../ast/Node.h"
@@ -49,10 +50,10 @@ std::unique_ptr<Node> Create::parseCreate() {
             //CREATE TABLE Products (ProductID INT PRIMARY KEY, ProductName INTEGER, Price DECIMAL, InStock BOOLEAN);
             //TODO: Clustered must be paired
             
-            while(parser.check(KEYWORD) || parser.check(OPERATOR)) {
+            while(parser.check(KEYWORD) || parser.check(OPERATOR) || Parser::CONSTRAINT_KEYWORDS.find(checkNext) != Parser::CONSTRAINT_KEYWORDS.end()) {
 
                 std::string con = parser.peek().sql;
-                
+                        
                 if(Parser::CONSTRAINT_KEYWORDS.find(con) == Parser::CONSTRAINT_KEYWORDS.end()) {    
                     break;
                 }
@@ -107,9 +108,27 @@ std::unique_ptr<Node> Create::parseCreate() {
                 
                 }else if(con == "auto_increment") {
                     parser.consume(KEYWORD, "auto_increment");
-
                     col.constraints.push_back("auto_increment");
-                
+                    
+                }else if(con == "check") {
+                    //quantity INT CHECK (quantity > 0)
+                    parser.consume(IDENTIFIER, "check");
+                    parser.consume(SYMBOL, "(");
+                    
+                    std::string checkName = parser.peek().sql;
+                    
+                    if(col.name != checkName) {
+                        throw std::runtime_error("COLUMN NAME MUST MATCH NAME INSIDE OF CHECK STATEMENT");
+                    }
+                    
+                    Select selectParser(parser);
+                    auto check = selectParser.parseExpression(); 
+
+                    parser.consume(SYMBOL, ")");
+
+                    col.check = std::make_unique<CheckExpression>(std::move(check));
+
+                    
                 }else {
                     std::cerr << "UNKOWN CONSTRAINT USED";
                     parser.consume(IDENTIFIER); 
@@ -118,7 +137,7 @@ std::unique_ptr<Node> Create::parseCreate() {
 
             }
 
-            createStatement->columns.push_back(col);
+            createStatement->columns.push_back(std::move(col));
     
         // check if there's a comma followed by another column or a constraint
         if(parser.match(SYMBOL, ",")) {

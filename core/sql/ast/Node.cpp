@@ -28,6 +28,7 @@ void SelectStatement::print() const {
 CreateStatement::~CreateStatement() = default;
 
 
+
 void CreateStatement::print() const {
     std::cout << "CreateStatement {" << std::endl;
     if (!database.empty()) {
@@ -46,12 +47,19 @@ void CreateStatement::print() const {
             }
             std::cout << ")";
         }
+
+        // Print the check expression if it exists
+        if (col.check) {
+            std::cout << " CHECK ";
+            col.check->print(6);  // indent a bit for readability
+        }
+
         if (i < columns.size() - 1)
             std::cout << ",";
         std::cout << std::endl;
     }
     std::cout << "  ]" << std::endl;
-    
+
     if (!foreignKeys.empty()) {
         std::cout << "  foreignKeys: [" << std::endl;
         for (size_t i = 0; i < foreignKeys.size(); ++i) {
@@ -73,7 +81,7 @@ void CreateStatement::print() const {
         }
         std::cout << "  ]" << std::endl;
     }
-    
+
     std::cout << "}" << std::endl;
 }
 

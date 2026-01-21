@@ -43,8 +43,8 @@ int main() {
 
     try {
         
-        std::string statement = "CREATE TABLE Orders (OrderID INT PRIMARY KEY, CustomerID INT NOT NULL, OrderDate DATE, TotalAmount DECIMAL(10,2) NOT NULL, FOREIGN KEY (CustomerID) REFERENCES Customers(CustomerID));";
-    
+        //std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0), CONSTRAINT fk_item_order FOREIGN KEY (order_id) REFERENCES orders(id), CONSTRAINT fk_item_product FOREIGN KEY (product_id) REFERENCES products(id));";
+        std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0));";
         Lexer lexer;
         lexer.lexer(statement);
         
