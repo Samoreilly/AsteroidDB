@@ -13,7 +13,11 @@ class Create {
     
     void parseForeignKey(
         const std::unique_ptr<CreateStatement>& createStatement,
-        const std::string& columnName = "");
+        const std::string& columnName = ""
+    );
+
+    void parseConstraint(const std::unique_ptr<CreateStatement>& createStatement);
+        
 
 public:
 

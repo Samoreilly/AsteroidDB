@@ -17,6 +17,7 @@ struct CreateColumn {
 };
 
 struct ForeignKey {
+    std::string constraintName;
     std::vector<std::string> columnNames;
     std::string referencedTable;
     std::vector<std::string> referencedColumns;

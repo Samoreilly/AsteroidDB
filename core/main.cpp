@@ -43,8 +43,9 @@ int main() {
 
     try {
         
-        //std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0), CONSTRAINT fk_item_order FOREIGN KEY (order_id) REFERENCES orders(id), CONSTRAINT fk_item_product FOREIGN KEY (product_id) REFERENCES products(id));";
-        std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0));";
+        std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0), CONSTRAINT fk_item_order FOREIGN KEY (order_id) REFERENCES orders(id), CONSTRAINT fk_item_product FOREIGN KEY (product_id) REFERENCES products(id));";
+        //std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0 AND (quantity <= 100 OR quantity = 2)));";
+
         Lexer lexer;
         lexer.lexer(statement);
         

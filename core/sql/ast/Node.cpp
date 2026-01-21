@@ -64,6 +64,11 @@ void CreateStatement::print() const {
         std::cout << "  foreignKeys: [" << std::endl;
         for (size_t i = 0; i < foreignKeys.size(); ++i) {
             const auto& fk = foreignKeys[i];
+
+            if (!fk.constraintName.empty()) {
+                std::cout << "CONSTRAINT " << fk.constraintName << " ";
+            }
+
             std::cout << "    FOREIGN KEY (";
             for (size_t j = 0; j < fk.columnNames.size(); ++j) {
                 std::cout << fk.columnNames[j];

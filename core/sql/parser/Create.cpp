@@ -31,17 +31,30 @@ std::unique_ptr<Node> Create::parseCreate() {
         
         do {
 
+            if(parser.check(IDENTIFIER, "constraint")) {
+           
+                parser.consume(IDENTIFIER, "constraint");
+                parseConstraint(createStatement);
+                
+                if(!parser.match(SYMBOL, ",")) {
+                    break;
+                }
+                continue;
+            }
+                
+
             CreateColumn col;
             col.name = parser.consume(IDENTIFIER).sql;            
             
             Token tok = parser.consume(IDENTIFIER);
 
-            std::string dataType = tok.sql;
+            std::string type = tok.sql;
 
             if(parser.check(SYMBOL, "(")) {
                 col.type = parseVariableLength(tok); 
+            
             }else {
-               col.type = dataType; 
+               col.type = type; 
             }
            
             //if there is constraints
@@ -247,6 +260,43 @@ void Create::parseForeignKey(const std::unique_ptr<CreateStatement>& createState
     createStatement->foreignKeys.push_back(fk);
 }
 
+
+//TODO: Verify if foreign key already exists in the table
+
+void Create::parseConstraint(const std::unique_ptr<CreateStatement>& createStatement) {
+    
+    ForeignKey fk;
+
+    fk.constraintName = parser.consume(IDENTIFIER).sql;
+    
+    parser.consume(IDENTIFIER, "foreign");
+    parser.consume(IDENTIFIER, "key");
+    parser.consume(SYMBOL, "(");
+
+    do {
+        std::string columnName = parser.consume(IDENTIFIER).sql;
+        fk.columnNames.push_back(columnName);
+
+    }while(parser.match(SYMBOL, ","));
+
+    parser.consume(SYMBOL, ")");
+    parser.consume(IDENTIFIER, "references");
+
+    std::string referencedTable = parser.consume(IDENTIFIER).sql;
+    fk.referencedTable = referencedTable;
+    parser.consume(SYMBOL, "(");
+    do {
+
+        std::string referencedName = parser.consume(IDENTIFIER).sql;
+        fk.referencedColumns.push_back(referencedName);
+
+    }while(parser.match(SYMBOL, ","));
+
+    parser.consume(SYMBOL, ")");
+
+    createStatement->foreignKeys.push_back(fk);
+
+}
 
 
 
