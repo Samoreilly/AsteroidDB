@@ -138,7 +138,7 @@ std::unique_ptr<Node> Create::parseCreate() {
                     Select selectParser(parser);
                     auto check = selectParser.parseExpression(); 
 
-                    parser.consume(SYMBOL, ")");
+                   parser.consume(SYMBOL, ")");
 
                     col.check = std::make_unique<CheckExpression>(std::move(check));
                     

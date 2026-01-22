@@ -51,43 +51,15 @@ void Insert::parseInputs(std::unique_ptr<InsertStatement>& insertStatement) {
 
     Select selectParser(parser);
  
-    do {    
+    do {
         
-        std::string peekNext = parser.peek().sql;
+        auto expr = selectParser.parseExpression();
+        insertStatement->inputs.push_back(std::move(expr));
+     
+        size++;
+    }while(parser.match(SYMBOL, ","));    
         
-        if(parser.METHODS.find(peekNext) != parser.METHODS.end()) {
-           
-        
-            parser.consume(IDENTIFIER); 
-            parser.consume(SYMBOL, "(");
-                
-            std::cout << "CURRENT TOKEN: " << parser.peek().sql << "\n";
-            auto left = selectParser.parseExpression();
-            
-            auto methodExpr = std::make_unique<MethodExpression>(std::move(left));
-        
-            methodExpr->methodName = peekNext;
-            
-            insertStatement->inputs.push_back(std::move(methodExpr));            
-
-            size++;
-            
-            std::cout <<  "CURRENT TOKEN" << parser.peek().sql << "\n";
-            parser.consume(SYMBOL, ")");
-            
-        }else {
-            auto insert = selectParser.parseExpression();
-                
-            insertStatement->inputs.push_back(std::move(insert));
-
-            size++;
-        }
-
-    }while(parser.match(SYMBOL, ","));
-
-    
     verifyInsert(insertStatement, size);
-
     parser.consume(SYMBOL, ")");
 
 }

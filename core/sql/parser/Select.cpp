@@ -81,7 +81,7 @@ std::unique_ptr<Expression> Select::parseAndExpression() {
 
 std::unique_ptr<Expression> Select::parseComparison() {
 
-    auto left = parsePrimary();
+    auto left = parseAddition();
 
     if(parser.check(OPERATOR, "not") || parser.check(KEYWORD, "not")) {
         if(parser.peek(1).sql == "in") {
@@ -94,10 +94,10 @@ std::unique_ptr<Expression> Select::parseComparison() {
 
             do {
 
-                in->values.push_back(parsePrimary());
+                in->values.push_back(parseAddition());
             }while(parser.match(SYMBOL, ","));
             
-            parser.consume(SYMBOL, ",");
+            parser.consume(SYMBOL, ")");
 
             return in;
         } 
@@ -111,7 +111,8 @@ std::unique_ptr<Expression> Select::parseComparison() {
         
         parser.consume(SYMBOL, "(");
         do {
-            inExpr->values.push_back(parsePrimary());
+            inExpr->values.push_back(parseAddition());
+
         } while(parser.match(SYMBOL, ","));
         parser.consume(SYMBOL, ")");
         
@@ -123,10 +124,10 @@ std::unique_ptr<Expression> Select::parseComparison() {
         
         if(op == "==" || op == ">=" || op == "<="
             || op == "<" || op == ">" || op == "&" || op == "!="
-            || op == "<>" || op == "=" || op == "+" || op == "-"
+            || op == "<>" || op == "="
         ) {
             parser.next();
-            auto right = parsePrimary();
+            auto right = parseAddition();
         
             return std::make_unique<BinaryExpression>(
                 std::move(left), op, std::move(right)
@@ -134,8 +135,6 @@ std::unique_ptr<Expression> Select::parseComparison() {
 
         }
     
-    }else if(parser.peek().sql == "in") {
-        std::cout << "IN FOUND";
     }
 
     return left;
@@ -144,11 +143,39 @@ std::unique_ptr<Expression> Select::parseComparison() {
 std::unique_ptr<Expression> Select::parsePrimary() {
 
     if(parser.match(SYMBOL, "(")) {
-    //begin recursive loop again from parseExpression to build the tree
         auto expr = parseExpression();
-    
         parser.consume(SYMBOL, ")");
         return expr;
+    }
+
+    if(parser.check(IDENTIFIER)) {
+        std::string peekNext = parser.peek().sql;
+
+        if(parser.METHODS.find(peekNext) != parser.METHODS.end()) {
+            
+            parser.consume(IDENTIFIER); 
+            parser.consume(SYMBOL, "(");
+            
+            // Parse multiple arguments separated by commas
+            std::vector<std::unique_ptr<Expression>> args;
+            
+            if(!parser.check(SYMBOL, ")")) {  // Check if there are any arguments
+                do {
+                    args.push_back(parseExpression());
+                } while(parser.match(SYMBOL, ","));
+            }
+            
+            parser.consume(SYMBOL, ")");
+            
+            auto methodExpr = std::make_unique<MethodExpression>(std::move(args));
+            methodExpr->methodName = peekNext;
+            
+            return methodExpr;
+        }
+     
+        
+        Token id = parser.next();
+        return std::make_unique<Identifier>(id.sql);
     }
 
     if(parser.check(NUMBER)) {
@@ -172,12 +199,7 @@ std::unique_ptr<Expression> Select::parsePrimary() {
         bool val = (b.sql == "true");
         return std::make_unique<Literal>(Value(val));
     }
-
-    if(parser.check(IDENTIFIER)) {
-        Token id = parser.next();
-        return std::make_unique<Identifier>(id.sql);
-    }
-    
+   
     if (parser.match(OPERATOR, "-")) {
         Token num = parser.consume(NUMBER);
         
@@ -190,4 +212,36 @@ std::unique_ptr<Expression> Select::parsePrimary() {
     }
     
     throw std::runtime_error("Expected expression, got: " + parser.peek().sql);
+}
+
+std::unique_ptr<Expression> Select::parseAddition() {
+    auto left = parseMultiplication();
+    
+    while(parser.check(OPERATOR)) {
+        const std::string op = parser.peek().sql;
+        if(op == "+" || op == "-") {
+            parser.next();
+            auto right = parseMultiplication();
+            left = std::make_unique<BinaryExpression>(std::move(left), op, std::move(right));
+        } else {
+            break;
+        }
+    }
+    return left;
+}
+
+std::unique_ptr<Expression> Select::parseMultiplication() {
+    auto left = parsePrimary();
+    
+    while(parser.check(OPERATOR)) {
+        const std::string op = parser.peek().sql;
+        if(op == "*" || op == "/" || op == "%") {
+            parser.next();
+            auto right = parsePrimary();
+            left = std::make_unique<BinaryExpression>(std::move(left), op, std::move(right));
+        } else {
+            break;
+        }
+    }
+    return left;
 }

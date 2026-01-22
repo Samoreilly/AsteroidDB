@@ -92,31 +92,24 @@ void CreateStatement::print() const {
 
 InsertStatement::~InsertStatement() = default;
 
+
 void InsertStatement::print() const {
     std::cout << "InsertStatement {" << std::endl;
     std::cout << "  table: " << table << std::endl;
-    
+
     std::cout << "  columns: [" << std::endl;
-    for (size_t i = 0; i < columns.size(); ++i) {
-        std::cout << "    " << columns[i];
-        if (i < columns.size() - 1)
-            std::cout << ",";
-        std::cout << std::endl;
+    for (const auto& col : columns) {
+        std::cout << "    " << col << std::endl;
     }
     std::cout << "  ]" << std::endl;
-    
+
     std::cout << "  values: [" << std::endl;
-    for (size_t i = 0; i < inputs.size(); ++i) {
-        //std::cout << "    ";
-        if (inputs[i]) {
-            inputs[i]->print(4);
+    for (const auto& input : inputs) {
+        if (input) {
+            input->print(4);
         }
-        if (i < inputs.size() - 1)
-            std::cout << ",";
-        std::cout << std::endl;
     }
     std::cout << "  ]" << std::endl;
-    
     std::cout << "}" << std::endl;
 }
 

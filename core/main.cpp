@@ -48,7 +48,7 @@ int main() {
         
         //std::string statement = "INSERT INTO audit (id, data) VALUES (1, '{\"action\":\"create\"}');";
         //std::string statement = "INSERT INTO users (a, b) VALUES (1, 2), (3, 4), (5, 6);";
-        std::string statement = "INSERT INTO users (a, b) VALUES (1 + 2, LOWER('ABC' > 'abc'));";
+        std::string statement = "INSERT INTO t (col)VALUES (LOWER(ROUND(salary * 1.1, 2) > 1000));";
 
         Lexer lexer;
         lexer.lexer(statement);

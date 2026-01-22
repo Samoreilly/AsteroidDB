@@ -73,15 +73,20 @@ public:
         throw std::runtime_error("Unknown operator: " + op);
     }
     
+
     void print(int indent = 0) const override {
-        std::string indentStr(indent, ' ');
-        std::cout << indentStr << "BinaryExpression(" << op << ") {" << std::endl;
-        std::cout << indentStr << "  left: ";
+        std::string i(indent, ' ');
+        std::cout << i << "BinaryExpression(" << op << ") {" << std::endl;
+
+        std::cout << i << "  left:" << std::endl;
         left->print(indent + 4);
-        std::cout << indentStr << "  right: ";
+
+        std::cout << i << "  right:" << std::endl;
         right->print(indent + 4);
-        std::cout << indentStr << "}" << std::endl;
+
+        std::cout << i << "}" << std::endl;
     }
+
 };
 
 class CheckExpression : public Expression {
@@ -107,23 +112,28 @@ public:
 class MethodExpression : public Expression {
 public:
       
-    std::unique_ptr<Expression> method;
+    std::vector<std::unique_ptr<Expression>> method;
     std::string methodName;
     
-    explicit MethodExpression(std::unique_ptr<Expression> methodUsed)
-        : method(std::move(methodUsed)) {}
+
+    explicit MethodExpression(std::vector<std::unique_ptr<Expression>> args)
+        : method(std::move(args)) {}
     
     Value eval(Executor* executor) override {
-        return method->eval(executor);
     }
 
-    void print(int indent = 0) const override { 
-        std::string indentation(indent, ' ');
-        std::cout << indentation << "MethodExpression(" << methodName << ") {" << std::endl;
-        if (method) {
-            method->print(indent + 4);
+
+    void print(int indent = 0) const override {
+        std::string i(indent, ' ');
+        std::cout << i << "MethodExpression(" << methodName << ") {" << std::endl;
+
+        std::cout << i << "  arguments: [" << std::endl;
+        for (const auto& arg : method) {
+            arg->print(indent + 4);
         }
-        std::cout << indentation << "}" << std::endl;
+        std::cout << i << "  ]" << std::endl;
+
+        std::cout << i << "}" << std::endl;
     }
 
 };
@@ -139,8 +149,10 @@ public:
     }
     
     void print(int indent = 0) const override {
-        std::cout << "Literal(" << value << ")" << std::endl;
+        std::string i(indent, ' ');
+        std::cout << i << "Literal(" << value << ")" << std::endl;
     }
+
 };
 
 class Identifier : public Expression {
@@ -154,7 +166,9 @@ public:
     }
 
     void print(int indent = 0) const override {
-        std::cout << "Identifier(" << token << ")" << std::endl;
+        std::string i(indent, ' ');
+        std::cout << i << "Identifier(" << token << ")" << std::endl;
     }
+
 
 };
