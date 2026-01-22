@@ -14,7 +14,6 @@ This is also where errors are handled
 std::unique_ptr<Node> Parser::parseStatement() {
 
     Token p = peek();
-    std::cout << "Statement ->" << p.sql << "\n";
 
     //cant check direct token type because token type is generic like KEYWORD, OPERATOR etc 
     Statement tokenStatement;
@@ -23,7 +22,6 @@ std::unique_ptr<Node> Parser::parseStatement() {
         tokenStatement = Lexer::stringToParseStatement.at(p.sql);
     }
     
-    std::cout << "Statement ->" << tokenStatement << "\n";
     switch (tokenStatement) {
         
         case Statement::SELECT: {

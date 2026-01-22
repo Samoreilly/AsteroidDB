@@ -1,4 +1,5 @@
 #include "Insert.h"
+#include "Select.h"
 #include "../ast/Parser.h"
 #include "../ast/Node.h"
 #include <memory>
@@ -29,7 +30,8 @@ std::unique_ptr<Node> Insert::parseInsert() {
     parser.consume(KEYWORD, "values");
         
     //pass in inputs vector
-    parseColumns(insertStatement, insertStatement->inputs);
+    parseInputs(insertStatement, insertStatement->inputs);
+
 
     parser.consume(SYMBOL, ";");
 
@@ -39,14 +41,36 @@ std::unique_ptr<Node> Insert::parseInsert() {
 }
 
 
+void Insert::parseInputs(std::unique_ptr<InsertStatement>& insertStatement, std::vector<std::unique_ptr<Expression>>& inputs) {
+
+
+    parser.consume(SYMBOL, "(");
+
+    Select selectParser(parser);
+ 
+    do {    
+        
+        auto insert = selectParser.parseExpression();
+            
+        insertStatement->inputs.push_back(std::move(insert));
+
+
+    }while(parser.match(SYMBOL, ","));
+
+    
+    parser.consume(SYMBOL, ")");
+
+}
+
 void Insert::parseColumns(std::unique_ptr<InsertStatement>& insertStatement, std::vector<std::string>& v) {
 
     parser.consume(SYMBOL, "(");
 
     do {
+        
+        Token col = parser.consume(IDENTIFIER);
 
-        std::string colName = parser.consume(IDENTIFIER).sql;
-        insertStatement->columns.push_back(colName);
+        insertStatement->columns.push_back(col.sql);
 
     }while(parser.match(SYMBOL, ","));
 

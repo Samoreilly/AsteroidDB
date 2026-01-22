@@ -54,7 +54,7 @@ public:
     std::string table;
 
     std::vector<std::string> columns;
-    std::vector<std::string> inputs;
+    std::vector<std::unique_ptr<Expression>> inputs;
 
     void exec() override {
 

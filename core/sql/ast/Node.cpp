@@ -107,7 +107,10 @@ void InsertStatement::print() const {
     
     std::cout << "  values: [" << std::endl;
     for (size_t i = 0; i < inputs.size(); ++i) {
-        std::cout << "    " << inputs[i];
+        //std::cout << "    ";
+        if (inputs[i]) {
+            inputs[i]->print(4);
+        }
         if (i < inputs.size() - 1)
             std::cout << ",";
         std::cout << std::endl;

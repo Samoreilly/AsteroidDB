@@ -9,6 +9,8 @@ class Insert {
     Parser& parser;
 
     void parseColumns(std::unique_ptr<InsertStatement>& insertStatement, std::vector<std::string>& v);
+    void parseInputs(std::unique_ptr<InsertStatement>& insertStatement, std::vector<std::unique_ptr<Expression>>& v);
+    
     void verifyInsert(const std::unique_ptr<InsertStatement>& insertStatement);
 
 public:
