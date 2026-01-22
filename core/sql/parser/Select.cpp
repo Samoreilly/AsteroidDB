@@ -123,7 +123,7 @@ std::unique_ptr<Expression> Select::parseComparison() {
         
         if(op == "==" || op == ">=" || op == "<="
             || op == "<" || op == ">" || op == "&" || op == "!="
-            || op == "<>" || op == "="
+            || op == "<>" || op == "=" || op == "+" || op == "-"
         ) {
             parser.next();
             auto right = parsePrimary();

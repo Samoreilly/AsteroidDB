@@ -21,28 +21,31 @@ std::unique_ptr<Node> Insert::parseInsert() {
     std::string tableName = parser.consume(IDENTIFIER).sql;
 
     insertStatement->table = tableName;
-    
-  
-    
+        
     //pass in column name vector first
     parseColumns(insertStatement, insertStatement->columns);
 
     parser.consume(KEYWORD, "values");
         
     //pass in inputs vector
-    parseInputs(insertStatement, insertStatement->inputs);
 
+    //for multi-line INSERTS INSERT INTO table (a, b) VALUES (1, 2), (3, 4), (5, 6);
+
+    do {
+    
+        parseInputs(insertStatement);
+
+    }while(parser.match(SYMBOL, ","));
 
     parser.consume(SYMBOL, ";");
-
-    verifyInsert(insertStatement);
 
     return insertStatement;
 }
 
 
-void Insert::parseInputs(std::unique_ptr<InsertStatement>& insertStatement, std::vector<std::unique_ptr<Expression>>& inputs) {
+void Insert::parseInputs(std::unique_ptr<InsertStatement>& insertStatement) {
 
+    int size = 0;
 
     parser.consume(SYMBOL, "(");
 
@@ -50,14 +53,41 @@ void Insert::parseInputs(std::unique_ptr<InsertStatement>& insertStatement, std:
  
     do {    
         
-        auto insert = selectParser.parseExpression();
+        std::string peekNext = parser.peek().sql;
+        
+        if(parser.METHODS.find(peekNext) != parser.METHODS.end()) {
+           
+        
+            parser.consume(IDENTIFIER); 
+            parser.consume(SYMBOL, "(");
+                
+            std::cout << "CURRENT TOKEN: " << parser.peek().sql << "\n";
+            auto left = selectParser.parseExpression();
             
-        insertStatement->inputs.push_back(std::move(insert));
+            auto methodExpr = std::make_unique<MethodExpression>(std::move(left));
+        
+            methodExpr->methodName = peekNext;
+            
+            insertStatement->inputs.push_back(std::move(methodExpr));            
 
+            size++;
+            
+            std::cout <<  "CURRENT TOKEN" << parser.peek().sql << "\n";
+            parser.consume(SYMBOL, ")");
+            
+        }else {
+            auto insert = selectParser.parseExpression();
+                
+            insertStatement->inputs.push_back(std::move(insert));
+
+            size++;
+        }
 
     }while(parser.match(SYMBOL, ","));
 
     
+    verifyInsert(insertStatement, size);
+
     parser.consume(SYMBOL, ")");
 
 }
@@ -78,9 +108,11 @@ void Insert::parseColumns(std::unique_ptr<InsertStatement>& insertStatement, std
     
 }
 
-void Insert::verifyInsert(const std::unique_ptr<InsertStatement>& insertStatement) {
+void Insert::verifyInsert(const std::unique_ptr<InsertStatement>& insertStatement, const int& size) {
 
-    if(insertStatement->columns.size() != insertStatement->inputs.size()){
+    if(insertStatement->columns.size() != size){
+        std::cout << "COLUMN SIZE" << insertStatement->columns.size() << "\n";
+        std::cout << size << "\n";
         throw std::runtime_error("COLUMNS AND INPUT LENGTH DON'T MATCH");
     }
 }

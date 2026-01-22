@@ -46,7 +46,9 @@ int main() {
         //std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0), CONSTRAINT fk_item_order FOREIGN KEY (order_id) REFERENCES orders(id), CONSTRAINT fk_item_product FOREIGN KEY (product_id) REFERENCES products(id));";
         //std::string statement = "CREATE TABLE payments (id INT PRIMARY KEY, status VARCHAR(20) CHECK (status IN ('pending','paid','failed')));"; 
         
-        std::string statement = "INSERT INTO audit (id, data) VALUES (1, '{\"action\":\"create\"}');";
+        //std::string statement = "INSERT INTO audit (id, data) VALUES (1, '{\"action\":\"create\"}');";
+        //std::string statement = "INSERT INTO users (a, b) VALUES (1, 2), (3, 4), (5, 6);";
+        std::string statement = "INSERT INTO users (a, b) VALUES (1 + 2, LOWER('ABC' > 'abc'));";
 
         Lexer lexer;
         lexer.lexer(statement);

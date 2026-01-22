@@ -6,6 +6,7 @@
 #include "Expression.h"
 #include <memory>
 
+class MethodExpression;
 class CheckExpression;
 class Expression;
 
@@ -55,6 +56,7 @@ public:
 
     std::vector<std::string> columns;
     std::vector<std::unique_ptr<Expression>> inputs;
+    std::unique_ptr<MethodExpression> methodExpression; 
 
     void exec() override {
 

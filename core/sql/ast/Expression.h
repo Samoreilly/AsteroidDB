@@ -86,6 +86,7 @@ public:
 
 class CheckExpression : public Expression {
 public:
+    
     std::unique_ptr<Expression> cond;
 
     explicit CheckExpression(std::unique_ptr<Expression> condition)
@@ -103,7 +104,29 @@ public:
     }
 };
 
+class MethodExpression : public Expression {
+public:
+      
+    std::unique_ptr<Expression> method;
+    std::string methodName;
+    
+    explicit MethodExpression(std::unique_ptr<Expression> methodUsed)
+        : method(std::move(methodUsed)) {}
+    
+    Value eval(Executor* executor) override {
+        return method->eval(executor);
+    }
 
+    void print(int indent = 0) const override { 
+        std::string indentation(indent, ' ');
+        std::cout << indentation << "MethodExpression(" << methodName << ") {" << std::endl;
+        if (method) {
+            method->print(indent + 4);
+        }
+        std::cout << indentation << "}" << std::endl;
+    }
+
+};
 
 class Literal : public Expression {
 public:

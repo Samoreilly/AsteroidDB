@@ -21,6 +21,23 @@ public:
 
     Parser(const std::vector<Token> tokens) : tokens(std::move(tokens)) {}; 
 
+    static inline const std::unordered_set<std::string> METHODS = {
+
+        "lower",
+        "upper",
+        "avg",
+        "min",
+        "max",
+        "variance",
+        "stddev",
+        "length",
+        "char_length",
+        "trim",
+        "abs",
+        "round",
+        "power",
+        "ceil"
+    };
 
     static inline const std::unordered_set<std::string> CONSTRAINT_KEYWORDS = {
 
