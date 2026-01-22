@@ -100,7 +100,9 @@ public:
         return parseStatement();
     }
 
-    const Token& peek() const {
+    const Token& peek(int next = 0) const {
+        if(next != 0 && pos + next < tokens.size())return tokens.at(pos);
+        
         return tokens.at(pos);
     }
 

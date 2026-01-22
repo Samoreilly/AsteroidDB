@@ -222,4 +222,5 @@ CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o: \
  /usr/include/c++/13/unordered_map \
  /usr/include/c++/13/bits/unordered_map.h \
  /home/sam-o-reilly/AsteroidDB/core/sql/ast/../parser/Create.h \
- /home/sam-o-reilly/AsteroidDB/core/sql/ast/../parser/Select.h
+ /home/sam-o-reilly/AsteroidDB/core/sql/ast/../parser/Select.h \
+ /home/sam-o-reilly/AsteroidDB/core/sql/ast/../parser/Insert.h

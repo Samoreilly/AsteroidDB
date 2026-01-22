@@ -18,6 +18,7 @@ class Select {
     std::unique_ptr<Expression> parseAndExpression();
     std::unique_ptr<Expression> parseComparison();
     std::unique_ptr<Expression> parsePrimary();
+    std::unique_ptr<Expression> parseIn();
 
 public:
 

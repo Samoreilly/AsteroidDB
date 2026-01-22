@@ -256,6 +256,30 @@ core/sql/parser/Create.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.s
 .PHONY : core/sql/parser/Create.cpp.s
 
+core/sql/parser/Insert.o: core/sql/parser/Insert.cpp.o
+.PHONY : core/sql/parser/Insert.o
+
+# target to build an object file
+core/sql/parser/Insert.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o
+.PHONY : core/sql/parser/Insert.cpp.o
+
+core/sql/parser/Insert.i: core/sql/parser/Insert.cpp.i
+.PHONY : core/sql/parser/Insert.i
+
+# target to preprocess a source file
+core/sql/parser/Insert.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.i
+.PHONY : core/sql/parser/Insert.cpp.i
+
+core/sql/parser/Insert.s: core/sql/parser/Insert.cpp.s
+.PHONY : core/sql/parser/Insert.s
+
+# target to generate assembly for a file
+core/sql/parser/Insert.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.s
+.PHONY : core/sql/parser/Insert.cpp.s
+
 core/sql/parser/Select.o: core/sql/parser/Select.cpp.o
 .PHONY : core/sql/parser/Select.o
 
@@ -305,6 +329,9 @@ help:
 	@echo "... core/sql/parser/Create.o"
 	@echo "... core/sql/parser/Create.i"
 	@echo "... core/sql/parser/Create.s"
+	@echo "... core/sql/parser/Insert.o"
+	@echo "... core/sql/parser/Insert.i"
+	@echo "... core/sql/parser/Insert.s"
 	@echo "... core/sql/parser/Select.o"
 	@echo "... core/sql/parser/Select.i"
 	@echo "... core/sql/parser/Select.s"

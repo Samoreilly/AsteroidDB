@@ -9,5 +9,6 @@ add_executable(
   core/sql/ast/Parser.cpp
   core/sql/ast/Node.cpp
   core/sql/parser/Select.cpp
-  core/sql/parser/Create.cpp)
+  core/sql/parser/Create.cpp
+  core/sql/parser/Insert.cpp)
 

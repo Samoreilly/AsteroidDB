@@ -129,7 +129,8 @@ std::unique_ptr<Node> Create::parseCreate() {
                     parser.consume(SYMBOL, "(");
                     
                     std::string checkName = parser.peek().sql;
-                    
+                    std::cout << "here->" << checkName;
+
                     if(col.name != checkName) {
                         throw std::runtime_error("COLUMN NAME MUST MATCH NAME INSIDE OF CHECK STATEMENT");
                     }
@@ -140,7 +141,6 @@ std::unique_ptr<Node> Create::parseCreate() {
                     parser.consume(SYMBOL, ")");
 
                     col.check = std::make_unique<CheckExpression>(std::move(check));
-
                     
                 }else {
                     std::cerr << "UNKOWN CONSTRAINT USED";

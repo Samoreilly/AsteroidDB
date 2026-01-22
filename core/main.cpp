@@ -43,8 +43,10 @@ int main() {
 
     try {
         
-        std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0), CONSTRAINT fk_item_order FOREIGN KEY (order_id) REFERENCES orders(id), CONSTRAINT fk_item_product FOREIGN KEY (product_id) REFERENCES products(id));";
-        //std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0 AND (quantity <= 100 OR quantity = 2)));";
+        //std::string statement = "CREATE TABLE order_items (id INT PRIMARY KEY, order_id INT NOT NULL, product_id INT NOT NULL, quantity INT CHECK (quantity > 0), CONSTRAINT fk_item_order FOREIGN KEY (order_id) REFERENCES orders(id), CONSTRAINT fk_item_product FOREIGN KEY (product_id) REFERENCES products(id));";
+        //std::string statement = "CREATE TABLE payments (id INT PRIMARY KEY, status VARCHAR(20) CHECK (status IN ('pending','paid','failed')));"; 
+        
+        std::string statement = "INSERT INTO users (id, email, active) VALUES (1, 'a@example.com', true);";
 
         Lexer lexer;
         lexer.lexer(statement);
@@ -57,7 +59,7 @@ int main() {
         Parser parser(lexer.getTokens());
         std::unique_ptr<Node> ast = parser.parse();
         
-        if (auto* createStmt = dynamic_cast<CreateStatement*>(ast.get())) {
+        if (auto* createStmt = dynamic_cast<InsertStatement*>(ast.get())) {
             createStmt->print();
         }
                 

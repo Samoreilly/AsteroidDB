@@ -17,6 +17,34 @@ public:
     virtual void print(int indent = 0) const = 0;
 };
 
+//when executing check if value in the database is in the vector
+class InExpression : public Expression {
+public:
+
+    std::unique_ptr<Expression> left;
+    std::vector<std::unique_ptr<Expression>> values;
+    bool isNotIn = false;
+    
+    Value eval(Executor* executor) {
+        return left->eval(executor);
+    }
+
+    void print(int indent = 0) const override {
+        std::cout << "InExpression";
+        if (isNotIn) std::cout << "(NOT)";
+        std::cout << " {" << std::endl;
+        std::cout << "  left: ";
+        left->print();
+        std::cout << std::endl << "  values: [";
+        for (size_t i = 0; i < values.size(); ++i) {
+            values[i]->print();
+            if (i < values.size() - 1) std::cout << ", ";
+        }
+        std::cout << "]" << std::endl;
+        std::cout << "}" << std::endl;
+    }
+};
+
 class BinaryExpression : public Expression {
 public:
 

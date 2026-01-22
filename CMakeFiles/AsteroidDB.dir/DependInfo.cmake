@@ -13,6 +13,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/sam-o-reilly/AsteroidDB/core/sql/ast/Parser.cpp" "CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/core/sql/ast/Parser.cpp.o.d"
   "/home/sam-o-reilly/AsteroidDB/core/sql/lexer/lexer.cpp" "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/core/sql/lexer/lexer.cpp.o.d"
   "/home/sam-o-reilly/AsteroidDB/core/sql/parser/Create.cpp" "CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o.d"
+  "/home/sam-o-reilly/AsteroidDB/core/sql/parser/Insert.cpp" "CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o.d"
   "/home/sam-o-reilly/AsteroidDB/core/sql/parser/Select.cpp" "CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o" "gcc" "CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o.d"
   "" "AsteroidDB" "gcc" "CMakeFiles/AsteroidDB.dir/link.d"
   )

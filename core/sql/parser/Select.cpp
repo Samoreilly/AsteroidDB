@@ -61,10 +61,11 @@ std::unique_ptr<Expression> Select::parseOrExpression() {
     
     return left;
 }
+    // Check for IN keyword
 
 std::unique_ptr<Expression> Select::parseAndExpression() {
     auto left = parseComparison();
-    
+  
     while(parser.match(OPERATOR, "and")) {
         auto right = parseComparison();
         
@@ -82,6 +83,41 @@ std::unique_ptr<Expression> Select::parseComparison() {
 
     auto left = parsePrimary();
 
+    if(parser.check(OPERATOR, "not") || parser.check(KEYWORD, "not")) {
+        if(parser.peek(1).sql == "in") {
+            parser.next();
+            parser.consume(KEYWORD, "in");
+
+            auto in = std::make_unique<InExpression>();
+            in->left = std::move(left);
+            in->isNotIn = true;
+
+            do {
+
+                in->values.push_back(parsePrimary());
+            }while(parser.match(SYMBOL, ","));
+            
+            parser.consume(SYMBOL, ",");
+
+            return in;
+        } 
+    }
+
+    if(parser.check(KEYWORD, "in") || parser.check(OPERATOR, "in")) {
+        parser.next();
+        
+        auto inExpr = std::make_unique<InExpression>();
+        inExpr->left = std::move(left);
+        
+        parser.consume(SYMBOL, "(");
+        do {
+            inExpr->values.push_back(parsePrimary());
+        } while(parser.match(SYMBOL, ","));
+        parser.consume(SYMBOL, ")");
+        
+        return inExpr;
+    }
+
     if(parser.check(OPERATOR)) {
         const std::string op = parser.peek().sql;
         
@@ -98,13 +134,15 @@ std::unique_ptr<Expression> Select::parseComparison() {
 
         }
     
+    }else if(parser.peek().sql == "in") {
+        std::cout << "IN FOUND";
     }
 
     return left;
 }
 
 std::unique_ptr<Expression> Select::parsePrimary() {
-    
+
     if(parser.match(SYMBOL, "(")) {
     //begin recursive loop again from parseExpression to build the tree
         auto expr = parseExpression();

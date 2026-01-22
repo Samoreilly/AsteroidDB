@@ -4,7 +4,7 @@
 #include "Node.h"
 #include "../parser/Create.h"
 #include "../parser/Select.h"
-
+#include "../parser/Insert.h"
 /*
 This file is responsible for building the Abstract Syntax Tree,
 It used Recursive Descent Parsing, where function are called based on the current to token to parse the input
@@ -34,6 +34,11 @@ std::unique_ptr<Node> Parser::parseStatement() {
         case Statement::CREATE: {
             Create createParser(*this);
             return createParser.parseCreate();
+        }
+
+        case Statement::INSERT: {
+            Insert parseInsert(*this);
+            return parseInsert.parseInsert();
         }
         
         case Statement::UPDATE:

@@ -51,12 +51,19 @@ public:
 class InsertStatement : public Node {
 public:
     
-    std::vector<std::string> columns;
     std::string table;
-    
+
+    std::vector<std::string> columns;
+    std::vector<std::string> inputs;
+
     void exec() override {
 
     }
+
+    void print() const;
+
+    InsertStatement() = default;
+    ~InsertStatement() override;
 };
 
 class DeleteStatement : public Node {
@@ -92,3 +99,5 @@ public:
     ~CreateStatement() override;
 
 };
+
+
