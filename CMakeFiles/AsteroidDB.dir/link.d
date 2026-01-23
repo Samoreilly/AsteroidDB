@@ -9,6 +9,17 @@ AsteroidDB: \
   CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o \
   /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
   /usr/lib/gcc/x86_64-linux-gnu/13/../../../x86_64-linux-gnu/libm.so \
@@ -57,6 +68,28 @@ CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o:
 CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o:
 
 CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o:
 
 /usr/lib/gcc/x86_64-linux-gnu/13/libstdc++.so:
 

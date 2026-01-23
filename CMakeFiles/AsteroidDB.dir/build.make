@@ -170,6 +170,160 @@ CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/sql/parser/Insert.cpp -o CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.s
 
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o: core/engine/storage/Page.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/storage/Page.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/storage/Page.cpp > CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/storage/Page.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o: core/engine/storage/Record.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/storage/Record.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/storage/Record.cpp > CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/storage/Record.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o: core/engine/storage/PageManager.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/storage/PageManager.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/storage/PageManager.cpp > CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/storage/PageManager.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o: core/engine/storage/BufferPool.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/storage/BufferPool.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/storage/BufferPool.cpp > CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/storage/BufferPool.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o: core/engine/storage/TableHeap.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/storage/TableHeap.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/storage/TableHeap.cpp > CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/storage/TableHeap.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o: core/engine/executor/Catalog.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/executor/Catalog.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/executor/Catalog.cpp > CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/executor/Catalog.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o: core/engine/executor/ExecutorEngine.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/executor/ExecutorEngine.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/executor/ExecutorEngine.cpp > CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/executor/ExecutorEngine.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o: core/engine/executor/CreateExecutor.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/executor/CreateExecutor.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/executor/CreateExecutor.cpp > CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/executor/CreateExecutor.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o: core/engine/executor/InsertExecutor.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/executor/InsertExecutor.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/executor/InsertExecutor.cpp > CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/executor/InsertExecutor.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o: core/engine/executor/SelectExecutor.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/executor/SelectExecutor.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/executor/SelectExecutor.cpp > CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/executor/SelectExecutor.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.s
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/flags.make
+CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o: core/engine/executor/DeleteExecutor.cpp
+CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o -MF CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o.d -o CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o -c /home/sam-o-reilly/AsteroidDB/core/engine/executor/DeleteExecutor.cpp
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/sam-o-reilly/AsteroidDB/core/engine/executor/DeleteExecutor.cpp > CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.i
+
+CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/sam-o-reilly/AsteroidDB/core/engine/executor/DeleteExecutor.cpp -o CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.s
+
 # Object files for target AsteroidDB
 AsteroidDB_OBJECTS = \
 "CMakeFiles/AsteroidDB.dir/core/main.cpp.o" \
@@ -178,7 +332,18 @@ AsteroidDB_OBJECTS = \
 "CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o" \
 "CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o" \
 "CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o" \
-"CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o"
+"CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o" \
+"CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o"
 
 # External object files for target AsteroidDB
 AsteroidDB_EXTERNAL_OBJECTS =
@@ -190,10 +355,21 @@ AsteroidDB: CMakeFiles/AsteroidDB.dir/core/sql/ast/Node.cpp.o
 AsteroidDB: CMakeFiles/AsteroidDB.dir/core/sql/parser/Select.cpp.o
 AsteroidDB: CMakeFiles/AsteroidDB.dir/core/sql/parser/Create.cpp.o
 AsteroidDB: CMakeFiles/AsteroidDB.dir/core/sql/parser/Insert.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o
+AsteroidDB: CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o
 AsteroidDB: CMakeFiles/AsteroidDB.dir/build.make
 AsteroidDB: CMakeFiles/AsteroidDB.dir/compiler_depend.ts
 AsteroidDB: CMakeFiles/AsteroidDB.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable AsteroidDB"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/sam-o-reilly/AsteroidDB/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Linking CXX executable AsteroidDB"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/AsteroidDB.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

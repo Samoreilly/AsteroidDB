@@ -136,6 +136,270 @@ AsteroidDB/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/build
 .PHONY : AsteroidDB/fast
 
+core/engine/executor/Catalog.o: core/engine/executor/Catalog.cpp.o
+.PHONY : core/engine/executor/Catalog.o
+
+# target to build an object file
+core/engine/executor/Catalog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o
+.PHONY : core/engine/executor/Catalog.cpp.o
+
+core/engine/executor/Catalog.i: core/engine/executor/Catalog.cpp.i
+.PHONY : core/engine/executor/Catalog.i
+
+# target to preprocess a source file
+core/engine/executor/Catalog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.i
+.PHONY : core/engine/executor/Catalog.cpp.i
+
+core/engine/executor/Catalog.s: core/engine/executor/Catalog.cpp.s
+.PHONY : core/engine/executor/Catalog.s
+
+# target to generate assembly for a file
+core/engine/executor/Catalog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.s
+.PHONY : core/engine/executor/Catalog.cpp.s
+
+core/engine/executor/CreateExecutor.o: core/engine/executor/CreateExecutor.cpp.o
+.PHONY : core/engine/executor/CreateExecutor.o
+
+# target to build an object file
+core/engine/executor/CreateExecutor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o
+.PHONY : core/engine/executor/CreateExecutor.cpp.o
+
+core/engine/executor/CreateExecutor.i: core/engine/executor/CreateExecutor.cpp.i
+.PHONY : core/engine/executor/CreateExecutor.i
+
+# target to preprocess a source file
+core/engine/executor/CreateExecutor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.i
+.PHONY : core/engine/executor/CreateExecutor.cpp.i
+
+core/engine/executor/CreateExecutor.s: core/engine/executor/CreateExecutor.cpp.s
+.PHONY : core/engine/executor/CreateExecutor.s
+
+# target to generate assembly for a file
+core/engine/executor/CreateExecutor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.s
+.PHONY : core/engine/executor/CreateExecutor.cpp.s
+
+core/engine/executor/DeleteExecutor.o: core/engine/executor/DeleteExecutor.cpp.o
+.PHONY : core/engine/executor/DeleteExecutor.o
+
+# target to build an object file
+core/engine/executor/DeleteExecutor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.o
+.PHONY : core/engine/executor/DeleteExecutor.cpp.o
+
+core/engine/executor/DeleteExecutor.i: core/engine/executor/DeleteExecutor.cpp.i
+.PHONY : core/engine/executor/DeleteExecutor.i
+
+# target to preprocess a source file
+core/engine/executor/DeleteExecutor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.i
+.PHONY : core/engine/executor/DeleteExecutor.cpp.i
+
+core/engine/executor/DeleteExecutor.s: core/engine/executor/DeleteExecutor.cpp.s
+.PHONY : core/engine/executor/DeleteExecutor.s
+
+# target to generate assembly for a file
+core/engine/executor/DeleteExecutor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/DeleteExecutor.cpp.s
+.PHONY : core/engine/executor/DeleteExecutor.cpp.s
+
+core/engine/executor/ExecutorEngine.o: core/engine/executor/ExecutorEngine.cpp.o
+.PHONY : core/engine/executor/ExecutorEngine.o
+
+# target to build an object file
+core/engine/executor/ExecutorEngine.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o
+.PHONY : core/engine/executor/ExecutorEngine.cpp.o
+
+core/engine/executor/ExecutorEngine.i: core/engine/executor/ExecutorEngine.cpp.i
+.PHONY : core/engine/executor/ExecutorEngine.i
+
+# target to preprocess a source file
+core/engine/executor/ExecutorEngine.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.i
+.PHONY : core/engine/executor/ExecutorEngine.cpp.i
+
+core/engine/executor/ExecutorEngine.s: core/engine/executor/ExecutorEngine.cpp.s
+.PHONY : core/engine/executor/ExecutorEngine.s
+
+# target to generate assembly for a file
+core/engine/executor/ExecutorEngine.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.s
+.PHONY : core/engine/executor/ExecutorEngine.cpp.s
+
+core/engine/executor/InsertExecutor.o: core/engine/executor/InsertExecutor.cpp.o
+.PHONY : core/engine/executor/InsertExecutor.o
+
+# target to build an object file
+core/engine/executor/InsertExecutor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.o
+.PHONY : core/engine/executor/InsertExecutor.cpp.o
+
+core/engine/executor/InsertExecutor.i: core/engine/executor/InsertExecutor.cpp.i
+.PHONY : core/engine/executor/InsertExecutor.i
+
+# target to preprocess a source file
+core/engine/executor/InsertExecutor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.i
+.PHONY : core/engine/executor/InsertExecutor.cpp.i
+
+core/engine/executor/InsertExecutor.s: core/engine/executor/InsertExecutor.cpp.s
+.PHONY : core/engine/executor/InsertExecutor.s
+
+# target to generate assembly for a file
+core/engine/executor/InsertExecutor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/InsertExecutor.cpp.s
+.PHONY : core/engine/executor/InsertExecutor.cpp.s
+
+core/engine/executor/SelectExecutor.o: core/engine/executor/SelectExecutor.cpp.o
+.PHONY : core/engine/executor/SelectExecutor.o
+
+# target to build an object file
+core/engine/executor/SelectExecutor.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.o
+.PHONY : core/engine/executor/SelectExecutor.cpp.o
+
+core/engine/executor/SelectExecutor.i: core/engine/executor/SelectExecutor.cpp.i
+.PHONY : core/engine/executor/SelectExecutor.i
+
+# target to preprocess a source file
+core/engine/executor/SelectExecutor.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.i
+.PHONY : core/engine/executor/SelectExecutor.cpp.i
+
+core/engine/executor/SelectExecutor.s: core/engine/executor/SelectExecutor.cpp.s
+.PHONY : core/engine/executor/SelectExecutor.s
+
+# target to generate assembly for a file
+core/engine/executor/SelectExecutor.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.s
+.PHONY : core/engine/executor/SelectExecutor.cpp.s
+
+core/engine/storage/BufferPool.o: core/engine/storage/BufferPool.cpp.o
+.PHONY : core/engine/storage/BufferPool.o
+
+# target to build an object file
+core/engine/storage/BufferPool.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o
+.PHONY : core/engine/storage/BufferPool.cpp.o
+
+core/engine/storage/BufferPool.i: core/engine/storage/BufferPool.cpp.i
+.PHONY : core/engine/storage/BufferPool.i
+
+# target to preprocess a source file
+core/engine/storage/BufferPool.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.i
+.PHONY : core/engine/storage/BufferPool.cpp.i
+
+core/engine/storage/BufferPool.s: core/engine/storage/BufferPool.cpp.s
+.PHONY : core/engine/storage/BufferPool.s
+
+# target to generate assembly for a file
+core/engine/storage/BufferPool.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.s
+.PHONY : core/engine/storage/BufferPool.cpp.s
+
+core/engine/storage/Page.o: core/engine/storage/Page.cpp.o
+.PHONY : core/engine/storage/Page.o
+
+# target to build an object file
+core/engine/storage/Page.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.o
+.PHONY : core/engine/storage/Page.cpp.o
+
+core/engine/storage/Page.i: core/engine/storage/Page.cpp.i
+.PHONY : core/engine/storage/Page.i
+
+# target to preprocess a source file
+core/engine/storage/Page.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.i
+.PHONY : core/engine/storage/Page.cpp.i
+
+core/engine/storage/Page.s: core/engine/storage/Page.cpp.s
+.PHONY : core/engine/storage/Page.s
+
+# target to generate assembly for a file
+core/engine/storage/Page.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/Page.cpp.s
+.PHONY : core/engine/storage/Page.cpp.s
+
+core/engine/storage/PageManager.o: core/engine/storage/PageManager.cpp.o
+.PHONY : core/engine/storage/PageManager.o
+
+# target to build an object file
+core/engine/storage/PageManager.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o
+.PHONY : core/engine/storage/PageManager.cpp.o
+
+core/engine/storage/PageManager.i: core/engine/storage/PageManager.cpp.i
+.PHONY : core/engine/storage/PageManager.i
+
+# target to preprocess a source file
+core/engine/storage/PageManager.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.i
+.PHONY : core/engine/storage/PageManager.cpp.i
+
+core/engine/storage/PageManager.s: core/engine/storage/PageManager.cpp.s
+.PHONY : core/engine/storage/PageManager.s
+
+# target to generate assembly for a file
+core/engine/storage/PageManager.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.s
+.PHONY : core/engine/storage/PageManager.cpp.s
+
+core/engine/storage/Record.o: core/engine/storage/Record.cpp.o
+.PHONY : core/engine/storage/Record.o
+
+# target to build an object file
+core/engine/storage/Record.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.o
+.PHONY : core/engine/storage/Record.cpp.o
+
+core/engine/storage/Record.i: core/engine/storage/Record.cpp.i
+.PHONY : core/engine/storage/Record.i
+
+# target to preprocess a source file
+core/engine/storage/Record.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.i
+.PHONY : core/engine/storage/Record.cpp.i
+
+core/engine/storage/Record.s: core/engine/storage/Record.cpp.s
+.PHONY : core/engine/storage/Record.s
+
+# target to generate assembly for a file
+core/engine/storage/Record.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/Record.cpp.s
+.PHONY : core/engine/storage/Record.cpp.s
+
+core/engine/storage/TableHeap.o: core/engine/storage/TableHeap.cpp.o
+.PHONY : core/engine/storage/TableHeap.o
+
+# target to build an object file
+core/engine/storage/TableHeap.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o
+.PHONY : core/engine/storage/TableHeap.cpp.o
+
+core/engine/storage/TableHeap.i: core/engine/storage/TableHeap.cpp.i
+.PHONY : core/engine/storage/TableHeap.i
+
+# target to preprocess a source file
+core/engine/storage/TableHeap.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.i
+.PHONY : core/engine/storage/TableHeap.cpp.i
+
+core/engine/storage/TableHeap.s: core/engine/storage/TableHeap.cpp.s
+.PHONY : core/engine/storage/TableHeap.s
+
+# target to generate assembly for a file
+core/engine/storage/TableHeap.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.s
+.PHONY : core/engine/storage/TableHeap.cpp.s
+
 core/main.o: core/main.cpp.o
 .PHONY : core/main.o
 
@@ -314,6 +578,39 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... AsteroidDB"
+	@echo "... core/engine/executor/Catalog.o"
+	@echo "... core/engine/executor/Catalog.i"
+	@echo "... core/engine/executor/Catalog.s"
+	@echo "... core/engine/executor/CreateExecutor.o"
+	@echo "... core/engine/executor/CreateExecutor.i"
+	@echo "... core/engine/executor/CreateExecutor.s"
+	@echo "... core/engine/executor/DeleteExecutor.o"
+	@echo "... core/engine/executor/DeleteExecutor.i"
+	@echo "... core/engine/executor/DeleteExecutor.s"
+	@echo "... core/engine/executor/ExecutorEngine.o"
+	@echo "... core/engine/executor/ExecutorEngine.i"
+	@echo "... core/engine/executor/ExecutorEngine.s"
+	@echo "... core/engine/executor/InsertExecutor.o"
+	@echo "... core/engine/executor/InsertExecutor.i"
+	@echo "... core/engine/executor/InsertExecutor.s"
+	@echo "... core/engine/executor/SelectExecutor.o"
+	@echo "... core/engine/executor/SelectExecutor.i"
+	@echo "... core/engine/executor/SelectExecutor.s"
+	@echo "... core/engine/storage/BufferPool.o"
+	@echo "... core/engine/storage/BufferPool.i"
+	@echo "... core/engine/storage/BufferPool.s"
+	@echo "... core/engine/storage/Page.o"
+	@echo "... core/engine/storage/Page.i"
+	@echo "... core/engine/storage/Page.s"
+	@echo "... core/engine/storage/PageManager.o"
+	@echo "... core/engine/storage/PageManager.i"
+	@echo "... core/engine/storage/PageManager.s"
+	@echo "... core/engine/storage/Record.o"
+	@echo "... core/engine/storage/Record.i"
+	@echo "... core/engine/storage/Record.s"
+	@echo "... core/engine/storage/TableHeap.o"
+	@echo "... core/engine/storage/TableHeap.i"
+	@echo "... core/engine/storage/TableHeap.s"
 	@echo "... core/main.o"
 	@echo "... core/main.i"
 	@echo "... core/main.s"

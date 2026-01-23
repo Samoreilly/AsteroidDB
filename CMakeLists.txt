@@ -10,5 +10,16 @@ add_executable(
   core/sql/ast/Node.cpp
   core/sql/parser/Select.cpp
   core/sql/parser/Create.cpp
-  core/sql/parser/Insert.cpp)
+  core/sql/parser/Insert.cpp
+  core/engine/storage/Page.cpp
+  core/engine/storage/Record.cpp
+  core/engine/storage/PageManager.cpp
+  core/engine/storage/BufferPool.cpp
+  core/engine/storage/TableHeap.cpp
+  core/engine/executor/Catalog.cpp
+  core/engine/executor/ExecutorEngine.cpp
+  core/engine/executor/CreateExecutor.cpp
+  core/engine/executor/InsertExecutor.cpp
+  core/engine/executor/SelectExecutor.cpp
+  core/engine/executor/DeleteExecutor.cpp)
 
