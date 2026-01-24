@@ -5,7 +5,7 @@
 namespace storage {
 
 TableHeap::TableHeap(const std::string& table_name, const std::string& db_directory)
-    : name_(table_name), first_page_id_(1) {
+    : name_(table_name), first_page_id_(1), last_search_page_id_(1) {
     
     // Create database file path
     db_file_ = db_directory + "/" + table_name + ".db";
@@ -32,6 +32,7 @@ void TableHeap::initialize() {
     uint32_t page_id;
     buffer_pool_->newPage(PageType::DATA_PAGE, page_id);
     first_page_id_ = page_id;
+    last_search_page_id_ = page_id;
     buffer_pool_->unpinPage(page_id, true);
 }
 
@@ -131,12 +132,19 @@ uint32_t TableHeap::findPageWithSpace(size_t required_space) {
     // Simple strategy: iterate through existing pages
     uint32_t page_count = page_manager_->getPageCount();
     
-    for (uint32_t page_id = first_page_id_; page_id < page_count; page_id++) {
+    // Check if hint is valid
+    if (last_search_page_id_ < first_page_id_ || last_search_page_id_ >= page_count) {
+        last_search_page_id_ = first_page_id_;
+    }
+
+    // Start from hint
+    for (uint32_t page_id = last_search_page_id_; page_id < page_count; page_id++) {
         Page* page = buffer_pool_->getPage(page_id);
         
         if (page->getPageType() == PageType::DATA_PAGE && 
             page->getFreeSpace() >= required_space + sizeof(Slot)) {
             buffer_pool_->unpinPage(page_id, false);
+            last_search_page_id_ = page_id;
             return page_id;
         }
         
@@ -148,6 +156,7 @@ uint32_t TableHeap::findPageWithSpace(size_t required_space) {
     buffer_pool_->newPage(PageType::DATA_PAGE, new_page_id);
     buffer_pool_->unpinPage(new_page_id, true);
     
+    last_search_page_id_ = new_page_id;
     return new_page_id;
 }
 

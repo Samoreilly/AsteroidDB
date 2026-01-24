@@ -15,6 +15,7 @@ Record::TypeTag Record::getTypeTag(const Value& value) {
 
 std::vector<char> Record::serialize(const std::vector<Value>& values) {
     std::vector<char> buffer;
+    buffer.reserve(getSerializedSize(values));
     
     // Write field count (2 bytes)
     uint16_t field_count = static_cast<uint16_t>(values.size());

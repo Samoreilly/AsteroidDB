@@ -166,7 +166,7 @@ public:
     Identifier(std::string t) : token(std::move(t)) {}
     
     Value eval(Executor* executor) override {
-        return executor->getCurrentRow().at(token);
+        return executor->getValue(token);
     }
 
     void print(int indent = 0) const override {

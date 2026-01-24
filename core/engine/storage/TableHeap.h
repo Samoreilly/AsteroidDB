@@ -69,6 +69,8 @@ private:
     
     // Initialize table (create first data page)
     void initialize();
+
+    uint32_t last_search_page_id_;
 };
 
 } // namespace storage

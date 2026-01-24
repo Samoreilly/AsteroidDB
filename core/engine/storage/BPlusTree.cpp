@@ -7,23 +7,172 @@ BPlusTree::BPlusTree(const std::string& index_name, BufferPool& buffer_pool, Pag
     : name_(index_name), buffer_pool_(buffer_pool), page_manager_(page_manager), root_page_id_(BTreePage::INVALID_PAGE_ID) {
 }
 
+// Iterator implementation
+BPlusTree::Iterator::Iterator(BufferPool& buffer_pool, uint32_t page_id, int index)
+    : buffer_pool_(buffer_pool), curr_page_(nullptr), curr_page_id_(page_id), curr_index_(index) {
+    if (curr_page_id_ != BTreePage::INVALID_PAGE_ID) {
+        curr_page_ = buffer_pool_.getPage(curr_page_id_);
+    }
+}
+
+BPlusTree::Iterator::~Iterator() {
+    if (curr_page_) {
+        buffer_pool_.unpinPage(curr_page_id_, false);
+    }
+}
+
+BPlusTree::Iterator::Iterator(Iterator&& other) noexcept 
+    : buffer_pool_(other.buffer_pool_), curr_page_(other.curr_page_), 
+      curr_page_id_(other.curr_page_id_), curr_index_(other.curr_index_) {
+    other.curr_page_ = nullptr;
+    other.curr_page_id_ = BTreePage::INVALID_PAGE_ID;
+}
+
+BPlusTree::Iterator& BPlusTree::Iterator::operator=(Iterator&& other) noexcept {
+    if (this != &other) {
+        if (curr_page_) {
+            buffer_pool_.unpinPage(curr_page_id_, false);
+        }
+        curr_page_ = other.curr_page_;
+        curr_page_id_ = other.curr_page_id_;
+        curr_index_ = other.curr_index_;
+        
+        other.curr_page_ = nullptr;
+        other.curr_page_id_ = BTreePage::INVALID_PAGE_ID;
+    }
+    return *this;
+}
+
+bool BPlusTree::Iterator::isEnd() const {
+    return curr_page_ == nullptr;
+}
+
+void BPlusTree::Iterator::next() {
+    if (isEnd()) return;
+
+    BTreeLeafPage leaf(curr_page_->getData());
+    curr_index_++;
+
+    if (curr_index_ >= leaf.getSize()) {
+        uint32_t next_id = leaf.getNextPageId();
+        buffer_pool_.unpinPage(curr_page_id_, false);
+        curr_page_ = nullptr;
+        
+        if (next_id != BTreePage::INVALID_PAGE_ID && next_id != 0) {
+            curr_page_id_ = next_id;
+            curr_page_ = buffer_pool_.getPage(curr_page_id_);
+            curr_index_ = 0;
+        } else {
+            curr_page_id_ = BTreePage::INVALID_PAGE_ID;
+        }
+    }
+}
+
+RID BPlusTree::Iterator::getRID() const {
+    if (isEnd()) return RID();
+    BTreeLeafPage leaf(curr_page_->getData());
+    return leaf.valueAt(curr_index_);
+}
+
+Value BPlusTree::Iterator::getKey() const {
+    if (isEnd()) return Value();
+    BTreeLeafPage leaf(curr_page_->getData());
+    return leaf.keyAt(curr_index_);
+}
+
+BPlusTree::Iterator BPlusTree::begin(const Value& key) {
+    if (root_page_id_ == BTreePage::INVALID_PAGE_ID) {
+        return Iterator(buffer_pool_, BTreePage::INVALID_PAGE_ID, 0);
+    }
+
+    // We can't use findLeafPage because it keeps the page pinned and returns Page*
+    // But Iterator expects to pin it itself or take ownership.
+    // Actually Iterator constructor pins it. So we should NOT pin it here, OR we should pass the Page* to Iterator.
+    // My Iterator ctor takes page_id and calls getPage.
+    // So I need to find the page ID, but findLeafPage pins it.
+    // Let's modify findLeafPageId to just return ID? No, the previous optimization was to avoid unpin/pin.
+    
+    // Better: Iterator should be able to take an already pinned Page*.
+    // But for now, let's just use findLeafPageId logic inside here or rely on the fact that findLeafPage pins it, 
+    // we can just unpin it immediately and let Iterator repin (inefficient), 
+    // OR change Iterator to take Page*.
+    
+    // Let's manually traverse to get the ID without pinning permanently, or just accept the repin overhead for the *first* page of a scan.
+    // Given the optimization goal, let's try to be efficient.
+    
+    // I'll reimplement traverse here to get ID and index.
+    
+    uint32_t curr_id = root_page_id_;
+    while (true) {
+        Page* raw_page = buffer_pool_.getPage(curr_id);
+        BTreePage base(raw_page->getData());
+        
+        if (base.isLeaf()) {
+            // Found the leaf
+            BTreeLeafPage leaf(raw_page->getData());
+            int index = leaf.lookup(key);
+            // lookup returns index of key >= target. If not found (all smaller), it might return size?
+            // checking BTreeLeafPage::lookup... it usually returns binary search lower_bound.
+            
+            // If lookup returns -1, it means key not found? No, std::lower_bound logic usually returns iterator.
+            // I need to check BTreeLeafPage::lookup implementation.
+            
+            buffer_pool_.unpinPage(curr_id, false); // Unpin so Iterator can grab it (or avoid double pin logic)
+            return Iterator(buffer_pool_, curr_id, index == -1 ? 0 : index); 
+        }
+
+        BTreeInternalPage internal(raw_page->getData());
+        uint32_t next_id = internal.lookup(key);
+        buffer_pool_.unpinPage(curr_id, false);
+        curr_id = next_id;
+        
+        if (curr_id == 0) return Iterator(buffer_pool_, BTreePage::INVALID_PAGE_ID, 0);
+    }
+}
+
+BPlusTree::Iterator BPlusTree::begin() {
+    if (root_page_id_ == BTreePage::INVALID_PAGE_ID) {
+        return Iterator(buffer_pool_, BTreePage::INVALID_PAGE_ID, 0);
+    }
+    
+    uint32_t curr_id = root_page_id_;
+    while (true) {
+        Page* raw_page = buffer_pool_.getPage(curr_id);
+        BTreePage base(raw_page->getData());
+        
+        if (base.isLeaf()) {
+            buffer_pool_.unpinPage(curr_id, false);
+            return Iterator(buffer_pool_, curr_id, 0);
+        }
+        
+        BTreeInternalPage internal(raw_page->getData());
+        // Follow leftmost pointer
+        uint32_t next_id = internal.valueAt(0);
+        buffer_pool_.unpinPage(curr_id, false);
+        curr_id = next_id;
+        
+        if (curr_id == 0) return Iterator(buffer_pool_, BTreePage::INVALID_PAGE_ID, 0);
+    }
+}
+
 RID BPlusTree::getValue(const Value& key) {
     if (root_page_id_ == BTreePage::INVALID_PAGE_ID) {
         return RID();
     }
 
-    uint32_t leaf_id = findLeafPageId(key);
-    Page* raw_page = buffer_pool_.getPage(leaf_id);
+    Page* raw_page = findLeafPage(key);
+    if (!raw_page) return RID();
+
     BTreeLeafPage leaf(raw_page->getData());
     
     int index = leaf.lookup(key);
     RID result = (index != -1) ? leaf.valueAt(index) : RID();
     
-    buffer_pool_.unpinPage(leaf_id, false);
+    buffer_pool_.unpinPage(raw_page->getPageId(), false);
     return result;
 }
 
-uint32_t BPlusTree::findLeafPageId(const Value& key) {
+Page* BPlusTree::findLeafPage(const Value& key) {
     uint32_t curr_id = root_page_id_;
     // std::cout << "BPlusTree: traversing from root " << curr_id << std::endl;
     
@@ -32,8 +181,7 @@ uint32_t BPlusTree::findLeafPageId(const Value& key) {
         BTreePage base(raw_page->getData());
         
         if (base.isLeaf()) {
-            buffer_pool_.unpinPage(curr_id, false);
-            return curr_id;
+            return raw_page;
         }
 
         BTreeInternalPage internal(raw_page->getData());
@@ -45,7 +193,7 @@ uint32_t BPlusTree::findLeafPageId(const Value& key) {
         
         if (curr_id == 0 || curr_id > 1000000) {
              std::cerr << "BPlusTree: CRITICAL - invalid next page ID " << curr_id << " from internal node" << std::endl;
-             return 0;
+             return nullptr;
         }
     }
 }
@@ -62,8 +210,10 @@ void BPlusTree::insert(const Value& key, const RID& rid) {
         return;
     }
 
-    uint32_t leaf_id = findLeafPageId(key);
-    Page* raw_leaf = buffer_pool_.getPage(leaf_id);
+    Page* raw_leaf = findLeafPage(key);
+    if (!raw_leaf) return;
+
+    uint32_t leaf_id = raw_leaf->getPageId();
     BTreeLeafPage leaf(raw_leaf->getData());
 
     leaf.insert(key, rid);

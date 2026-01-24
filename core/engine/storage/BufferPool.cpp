@@ -230,10 +230,8 @@ void BufferPool::updateLRU(uint32_t page_id) {
         return;
     }
     
-    // Move to front of LRU list
-    lru_list_.erase(it->second.second);
-    lru_list_.push_front(page_id);
-    it->second.second = lru_list_.begin();
+    // Move to front of LRU list using splice (no allocation)
+    lru_list_.splice(lru_list_.begin(), lru_list_, it->second.second);
 }
 
 } // namespace storage

@@ -70,8 +70,11 @@ void InsertExecutor::execute(InsertStatement* stmt) {
                 // Note: 'values' here has been reordered to match schema
                 index->insert(values[schema->indexColumn], rid);
                 // Update catalog metadata for root page ID
-                const_cast<TableSchema*>(schema)->indexRootPageId = index->getRootPageId();
-                catalog_->save();
+                uint32_t currentRoot = index->getRootPageId();
+                if (schema->indexRootPageId != currentRoot) {
+                    const_cast<TableSchema*>(schema)->indexRootPageId = currentRoot;
+                    catalog_->save();
+                }
             }
             
             successCount++;

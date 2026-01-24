@@ -2,6 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include <chrono>
+#include <climits>
 
 namespace executor {
 
@@ -15,6 +16,56 @@ bool SelectExecutor::evaluateWhere(Expression* whereClause) {
     
     Value result = whereClause->eval(&executor_);
     return result.isBool() && result.asBool();
+}
+
+// Helper to find index start condition
+void findStartIndex(Expression* expr, const std::string& colName, Value& outStartKey, bool& outHasStart, bool& outInclusive) {
+    if (!expr) return;
+
+    if (auto* bin = dynamic_cast<BinaryExpression*>(expr)) {
+        if (bin->op == "and") {
+            findStartIndex(bin->left.get(), colName, outStartKey, outHasStart, outInclusive);
+            findStartIndex(bin->right.get(), colName, outStartKey, outHasStart, outInclusive);
+            // In a real optimizer we would merge ranges (e.g. > 5 AND > 10 -> > 10). 
+            // Here simpler logic: last one wins or we trust traversal order.
+            return;
+        }
+
+        // Check for col op literal
+        std::string op = bin->op;
+        Expression* left = bin->left.get();
+        Expression* right = bin->right.get();
+        
+        Identifier* ident = dynamic_cast<Identifier*>(left);
+        Literal* lit = dynamic_cast<Literal*>(right);
+        
+        if (!ident) {
+            // Swap check: literal op col
+            ident = dynamic_cast<Identifier*>(right);
+            lit = dynamic_cast<Literal*>(left);
+            // Flip operator direction for canonical form
+            if (op == ">") op = "<";
+            else if (op == "<") op = ">";
+            else if (op == ">=") op = "<=";
+            else if (op == "<=") op = ">=";
+        }
+
+        if (ident && lit && ident->token == colName) {
+            // We have: colName op literal
+            if (op == "=" || op == ">=" || op == ">") {
+                // Potential start key
+                // For > val, we can start at val. Filtering will skip the equal part if needed.
+                // Actually BPlusTree::begin(val) finds first >= val.
+                // If op is >, finding >= val is correct start.
+                
+                // If we already have a start key, we should pick the stricter one (max).
+                // But simplifying: just take this one.
+                outStartKey = lit->value;
+                outHasStart = true;
+                outInclusive = (op != ">");
+            }
+        }
+    }
 }
 
 std::vector<ResultRow> SelectExecutor::execute(SelectStatement* stmt) {
@@ -59,96 +110,83 @@ std::vector<ResultRow> SelectExecutor::execute(SelectStatement* stmt) {
         }
     }
     
-    // Check for "Index Seek" opportunity (Equality on indexed column)
+    // Check for Index Scan opportunity
     storage::BPlusTree* index = catalog_->getIndex(stmt->table);
-    if (index != nullptr && schema->indexColumn != -1 && stmt->whereClause != nullptr) {
-        // Simple pattern matching for Index Seek: id = literal
-        if (auto* binExpr = dynamic_cast<BinaryExpression*>(stmt->whereClause.get())) {
-            if (binExpr->op == "=") {
-                Value targetValue;
-                bool indexMatch = false;
-                
-                // Case: id = 5
-                if (auto* ident = dynamic_cast<Identifier*>(binExpr->left.get())) {
-                    std::string indexColName = schema->columns[schema->indexColumn].name;
-                    if (ident->token == indexColName) {
-                        if (auto* lit = dynamic_cast<Literal*>(binExpr->right.get())) {
-                            targetValue = lit->value;
-                            indexMatch = true;
-                        }
-                    }
-                }
-                // Case: 5 = id
-                else if (auto* ident = dynamic_cast<Identifier*>(binExpr->right.get())) {
-                    std::string indexColName = schema->columns[schema->indexColumn].name;
-                    if (ident->token == indexColName) {
-                        if (auto* lit = dynamic_cast<Literal*>(binExpr->left.get())) {
-                            targetValue = lit->value;
-                            indexMatch = true;
-                        }
-                    }
-                }
-                
-                if (indexMatch) {
-                    storage::RID rid = index->getValue(targetValue);
-                    if (rid.isValid()) {
-                        std::vector<Value> recordValues = table->getRecord(rid);
-                        
-                        // Project selected columns
-                        ResultRow row;
-                        row.columnNames = selectedColumnNames;
-                        for (int idx : selectedColumnIndices) {
-                            if (idx < static_cast<int>(recordValues.size())) {
-                                row.values.push_back(recordValues[idx]);
-                            }
-                        }
-                        results.push_back(row);
-                        rowCount = 1;
+    bool indexScan = false;
+    Value startKey;
+    bool hasStartKey = false;
+    bool startInclusive = true;
 
-                        auto end = std::chrono::high_resolution_clock::now();
-                        last_query_time_ms_ = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-                        std::cout << "Index Seek used for " << schema->columns[schema->indexColumn].name << ". Selected 1 row(s)" << std::endl;
-                        return results;
-                    } else {
-                        // Index lookup found no match, return 0 rows
-                        auto end = std::chrono::high_resolution_clock::now();
-                        last_query_time_ms_ = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
-                        std::cout << "Index Seek used for " << schema->columns[schema->indexColumn].name << ". Selected 0 row(s)" << std::endl;
-                        return results;
-                    }
-                }
-            }
+    if (index != nullptr && schema->indexColumn != -1 && stmt->whereClause != nullptr) {
+        findStartIndex(stmt->whereClause.get(), schema->columns[schema->indexColumn].name, startKey, hasStartKey, startInclusive);
+        
+        // If found a start key, use index scan
+        if (hasStartKey) {
+            indexScan = true;
         }
     }
 
-    // Fallback: Full Scan
-    for (auto it = table->begin(); it.isValid(); it.next()) {
-        // Get full record
-        std::vector<Value> recordValues = it.getRecord();
+    if (indexScan) {
+        // Index Scan
+        auto it = index->begin(startKey);
         
-        // Build current row map for WHERE clause evaluation
-        std::map<std::string, Value> currentRow;
-        for (size_t i = 0; i < schema->columns.size() && i < recordValues.size(); i++) {
-            currentRow[schema->columns[i].name] = recordValues[i];
-        }
-        executor_.setCurrentRow(currentRow);
-        
-        // Evaluate WHERE clause
-        if (!evaluateWhere(stmt->whereClause.get())) {
-            continue;
-        }
-        
-        // Project selected columns
-        ResultRow row;
-        row.columnNames = selectedColumnNames;
-        for (int idx : selectedColumnIndices) {
-            if (idx < static_cast<int>(recordValues.size())) {
-                row.values.push_back(recordValues[idx]);
+        while (!it.isEnd()) {
+            storage::RID rid = it.getRID();
+            
+            // Optimization: If we have the key in index, we could check key predicates BEFORE fetching record.
+            // But SelectExecutor infrastructure requires evaluating full expression which might depend on other cols.
+            // So we fetch the record.
+            
+            try {
+                std::vector<Value> recordValues = table->getRecord(rid);
+                
+                // Set context using vector optimization
+                executor_.setCurrentRow(recordValues, *schema);
+                
+                if (evaluateWhere(stmt->whereClause.get())) {
+                    ResultRow row;
+                    row.columnNames = selectedColumnNames;
+                    for (int idx : selectedColumnIndices) {
+                        if (idx < static_cast<int>(recordValues.size())) {
+                            row.values.push_back(recordValues[idx]);
+                        }
+                    }
+                    results.push_back(row);
+                    rowCount++;
+                }
+            } catch (...) {
+                // Record might be deleted or invalid
             }
+            
+            it.next();
         }
-        
-        results.push_back(row);
-        rowCount++;
+        std::cout << "Index Scan used for " << schema->columns[schema->indexColumn].name << ". ";
+    } else {
+        // Full Scan
+        for (auto it = table->begin(); it.isValid(); it.next()) {
+            // Get full record
+            std::vector<Value> recordValues = it.getRecord();
+            
+            // Use optimized context
+            executor_.setCurrentRow(recordValues, *schema);
+            
+            // Evaluate WHERE clause
+            if (!evaluateWhere(stmt->whereClause.get())) {
+                continue;
+            }
+            
+            // Project selected columns
+            ResultRow row;
+            row.columnNames = selectedColumnNames;
+            for (int idx : selectedColumnIndices) {
+                if (idx < static_cast<int>(recordValues.size())) {
+                    row.values.push_back(recordValues[idx]);
+                }
+            }
+            
+            results.push_back(row);
+            rowCount++;
+        }
     }
     
     auto end = std::chrono::high_resolution_clock::now();
