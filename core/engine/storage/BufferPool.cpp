@@ -1,4 +1,5 @@
 #include "BufferPool.h"
+#include <iostream>
 #include <stdexcept>
 
 namespace storage {

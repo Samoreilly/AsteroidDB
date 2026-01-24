@@ -35,10 +35,25 @@ bool Catalog::createTable(const std::string& tableName, const std::vector<Column
     // Create table schema
     TableSchema schema;
     schema.tableName = tableName;
-    schema.columns = columns;
+    
+    for (const auto& col : columns) {
+        schema.columns.push_back(col);
+    }
+    
+    // Automatically index the first column
+    if (!schema.columns.empty()) {
+        schema.indexColumn = 0;
+    }
     
     // Create table heap
     auto tableHeap = std::make_unique<storage::TableHeap>(tableName, db_directory_);
+    
+    // Create B+ Tree index if specified
+    if (schema.indexColumn != -1) {
+        auto btree = std::make_unique<storage::BPlusTree>(tableName + "_idx", tableHeap->getBufferPool(), tableHeap->getPageManager());
+        indices_[tableName] = std::move(btree);
+        schema.indexRootPageId = indices_[tableName]->getRootPageId();
+    }
     
     // Store in catalog
     schemas_[tableName] = schema;
@@ -68,6 +83,14 @@ const TableSchema* Catalog::getSchema(const std::string& tableName) const {
     return &it->second;
 }
 
+storage::BPlusTree* Catalog::getIndex(const std::string& tableName) {
+    auto it = indices_.find(tableName);
+    if (it == indices_.end()) {
+        return nullptr;
+    }
+    return it->second.get();
+}
+
 bool Catalog::dropTable(const std::string& tableName) {
     if (!tableExists(tableName)) {
         return false;
@@ -75,6 +98,7 @@ bool Catalog::dropTable(const std::string& tableName) {
     
     tables_.erase(tableName);
     schemas_.erase(tableName);
+    indices_.erase(tableName);
     
     save();
     return true;
@@ -87,7 +111,7 @@ void Catalog::save() {
     
     out << schemas_.size() << "\n";
     for (const auto& [name, schema] : schemas_) {
-        out << name << " " << schema.columns.size() << "\n";
+        out << name << " " << schema.columns.size() << " " << schema.indexColumn << " " << schema.indexRootPageId << "\n";
         for (const auto& col : schema.columns) {
             out << col.name << " " << col.type << "\n";
         }
@@ -105,10 +129,16 @@ void Catalog::load() {
     for (size_t i = 0; i < tableCount; i++) {
         std::string tableName;
         size_t colCount;
-        if (!(in >> tableName >> colCount)) break;
+        int indexCol;
+        uint32_t indexRoot;
+        
+        if (!(in >> tableName >> colCount >> indexCol >> indexRoot)) break;
         
         TableSchema schema;
         schema.tableName = tableName;
+        schema.indexColumn = indexCol;
+        schema.indexRootPageId = indexRoot;
+        
         for (size_t j = 0; j < colCount; j++) {
             std::string colName, colType;
             if (!(in >> colName >> colType)) break;
@@ -116,8 +146,13 @@ void Catalog::load() {
         }
         
         schemas_[tableName] = schema;
-        // Lazy load TableHeap when needed or load now
         tables_[tableName] = std::make_unique<storage::TableHeap>(tableName, db_directory_);
+        
+        if (indexCol != -1) {
+            auto btree = std::make_unique<storage::BPlusTree>(tableName + "_idx", tables_[tableName]->getBufferPool(), tables_[tableName]->getPageManager());
+            btree->setRootPageId(indexRoot);
+            indices_[tableName] = std::move(btree);
+        }
     }
 }
 

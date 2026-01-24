@@ -12,7 +12,9 @@ enum class PageType : uint8_t {
     INVALID_PAGE = 0,
     DATA_PAGE = 1,
     HEADER_PAGE = 2,
-    FREE_PAGE = 3
+    FREE_PAGE = 3,
+    BTREE_INTERNAL = 4,
+    BTREE_LEAF = 5
 };
 
 // Slot structure for slotted page layout

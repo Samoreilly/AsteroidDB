@@ -1,0 +1,92 @@
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4,
+                 from perf_test.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+core/engine/storage/BufferPool.cpp: In member function ‘storage::Page* storage::BufferPool::getPage(uint32_t)’:
+core/engine/storage/BufferPool.cpp:35:10: error: ‘cout’ is not a member of ‘std’
+   35 |     std::cout << "BufferPool: Page " << page_id << " miss. Reading from disk." << std::endl;
+      |          ^~~~
+core/engine/storage/BufferPool.cpp:2:1: note: ‘std::cout’ is defined in header ‘<iostream>’; did you forget to ‘#include <iostream>’?
+    1 | #include "BufferPool.h"
+  +++ |+#include <iostream>
+    2 | #include <stdexcept>
+core/engine/storage/BufferPool.cpp:48:14: error: ‘cout’ is not a member of ‘std’
+   48 |         std::cout << "BufferPool: FAILED to read page " << page_id << " from disk." << std::endl;
+      |              ^~~~
+core/engine/storage/BufferPool.cpp:48:14: note: ‘std::cout’ is defined in header ‘<iostream>’; did you forget to ‘#include <iostream>’?
+core/engine/storage/BufferPool.cpp: In member function ‘storage::Page* storage::BufferPool::newPage(storage::PageType, uint32_t&)’:
+core/engine/storage/BufferPool.cpp:89:10: error: ‘cout’ is not a member of ‘std’
+   89 |     std::cout << "BufferPool: newPage allocated " << out_page_id << " and pinned in frame. PageTable size: " << page_table_.size() << std::endl;
+      |          ^~~~
+core/engine/storage/BufferPool.cpp:89:10: note: ‘std::cout’ is defined in header ‘<iostream>’; did you forget to ‘#include <iostream>’?
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4,
+                 from core/engine/executor/ExecutorEngine.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/CreateExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/InsertExecutor.h:4,
+                 from core/engine/executor/InsertExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/SelectExecutor.h:4,
+                 from core/engine/executor/SelectExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/DeleteExecutor.h:4,
+                 from core/engine/executor/DeleteExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Node.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Parser.h:3,
+                 from core/sql/ast/Parser.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Create.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Select.cpp:3:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/../ast/Node.h:6,
+                 from core/sql/parser/../ast/Parser.h:3,
+                 from core/sql/parser/Insert.h:3,
+                 from core/sql/parser/Insert.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^

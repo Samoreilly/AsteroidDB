@@ -181,7 +181,7 @@ public:
     }
 
     bool lookBack(size_t n, std::string expected = "") {
-        if(pos - n < 0) return false;
+        if(n > pos) return false;
             
         if(tokens.at(pos - n).sql == expected) {
             return true;

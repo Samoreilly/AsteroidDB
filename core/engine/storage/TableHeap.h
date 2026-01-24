@@ -51,10 +51,14 @@ public:
     Iterator begin();
     
     // Get table name
-    const std::string& getTableName() const { return table_name_; }
+    const std::string& getName() const { return name_; }
+
+    // Component access for index management
+    BufferPool& getBufferPool() { return *buffer_pool_; }
+    PageManager& getPageManager() { return *page_manager_; }
     
 private:
-    std::string table_name_;
+    std::string name_;
     std::string db_file_;
     std::unique_ptr<PageManager> page_manager_;
     std::unique_ptr<BufferPool> buffer_pool_;

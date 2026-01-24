@@ -20,6 +20,7 @@ bool SelectExecutor::evaluateWhere(Expression* whereClause) {
 std::vector<ResultRow> SelectExecutor::execute(SelectStatement* stmt) {
     auto start = std::chrono::high_resolution_clock::now();
     std::vector<ResultRow> results;
+    int rowCount = 0;
     
     if (stmt == nullptr) {
         throw std::runtime_error("SELECT statement is null");
@@ -58,8 +59,69 @@ std::vector<ResultRow> SelectExecutor::execute(SelectStatement* stmt) {
         }
     }
     
-    // Scan table
-    int rowCount = 0;
+    // Check for "Index Seek" opportunity (Equality on indexed column)
+    storage::BPlusTree* index = catalog_->getIndex(stmt->table);
+    if (index != nullptr && schema->indexColumn != -1 && stmt->whereClause != nullptr) {
+        // Simple pattern matching for Index Seek: id = literal
+        if (auto* binExpr = dynamic_cast<BinaryExpression*>(stmt->whereClause.get())) {
+            if (binExpr->op == "=") {
+                Value targetValue;
+                bool indexMatch = false;
+                
+                // Case: id = 5
+                if (auto* ident = dynamic_cast<Identifier*>(binExpr->left.get())) {
+                    std::string indexColName = schema->columns[schema->indexColumn].name;
+                    if (ident->token == indexColName) {
+                        if (auto* lit = dynamic_cast<Literal*>(binExpr->right.get())) {
+                            targetValue = lit->value;
+                            indexMatch = true;
+                        }
+                    }
+                }
+                // Case: 5 = id
+                else if (auto* ident = dynamic_cast<Identifier*>(binExpr->right.get())) {
+                    std::string indexColName = schema->columns[schema->indexColumn].name;
+                    if (ident->token == indexColName) {
+                        if (auto* lit = dynamic_cast<Literal*>(binExpr->left.get())) {
+                            targetValue = lit->value;
+                            indexMatch = true;
+                        }
+                    }
+                }
+                
+                if (indexMatch) {
+                    storage::RID rid = index->getValue(targetValue);
+                    if (rid.isValid()) {
+                        std::vector<Value> recordValues = table->getRecord(rid);
+                        
+                        // Project selected columns
+                        ResultRow row;
+                        row.columnNames = selectedColumnNames;
+                        for (int idx : selectedColumnIndices) {
+                            if (idx < static_cast<int>(recordValues.size())) {
+                                row.values.push_back(recordValues[idx]);
+                            }
+                        }
+                        results.push_back(row);
+                        rowCount = 1;
+
+                        auto end = std::chrono::high_resolution_clock::now();
+                        last_query_time_ms_ = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                        std::cout << "Index Seek used for " << schema->columns[schema->indexColumn].name << ". Selected 1 row(s)" << std::endl;
+                        return results;
+                    } else {
+                        // Index lookup found no match, return 0 rows
+                        auto end = std::chrono::high_resolution_clock::now();
+                        last_query_time_ms_ = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
+                        std::cout << "Index Seek used for " << schema->columns[schema->indexColumn].name << ". Selected 0 row(s)" << std::endl;
+                        return results;
+                    }
+                }
+            }
+        }
+    }
+
+    // Fallback: Full Scan
     for (auto it = table->begin(); it.isValid(); it.next()) {
         // Get full record
         std::vector<Value> recordValues = it.getRecord();

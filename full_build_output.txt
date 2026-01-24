@@ -1,0 +1,79 @@
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4,
+                 from perf_test.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+core/engine/storage/TableHeap.cpp: In constructor ‘storage::TableHeap::TableHeap(const std::string&, const std::string&)’:
+core/engine/storage/TableHeap.cpp:8:7: error: class ‘storage::TableHeap’ does not have any field named ‘table_name_’
+    8 |     : table_name_(table_name), first_page_id_(1) {
+      |       ^~~~~~~~~~~
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4,
+                 from core/engine/executor/ExecutorEngine.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/CreateExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/InsertExecutor.h:4,
+                 from core/engine/executor/InsertExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/SelectExecutor.h:4,
+                 from core/engine/executor/SelectExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/DeleteExecutor.h:4,
+                 from core/engine/executor/DeleteExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Node.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Parser.h:3,
+                 from core/sql/ast/Parser.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Create.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Select.cpp:3:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/../ast/Node.h:6,
+                 from core/sql/parser/../ast/Parser.h:3,
+                 from core/sql/parser/Insert.h:3,
+                 from core/sql/parser/Insert.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^

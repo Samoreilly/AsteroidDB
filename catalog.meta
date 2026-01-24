@@ -1,19 +1,9 @@
-6
-multi_test 2
-id int
-name varchar
+2
+big_table 2 0 4
+id INT
 order_items 4
+order_items 4 0 365
 id int
 order_id int
 product_id int
 quantity int
-orders 1
-id int
-products 1
-id int
-students 2
-id int
-name varchar
-test_persistent 2
-id int
-val varchar

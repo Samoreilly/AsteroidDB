@@ -1,0 +1,170 @@
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4,
+                 from perf_test.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+perf_test.cpp: In function ‘void runPerfTest()’:
+perf_test.cpp:22:34: error: no matching function for call to ‘std::vector<CreateColumn>::push_back(executor::ColumnInfo)’
+   22 |     createStmt->columns.push_back(ColumnInfo("id", "INT"));
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from /usr/include/c++/13/vector:66,
+                 from core/engine/executor/../storage/Page.h:6,
+                 from core/engine/executor/../storage/TableHeap.h:3,
+                 from core/engine/executor/Catalog.h:3,
+                 from core/engine/executor/ExecutorEngine.h:3:
+/usr/include/c++/13/bits/stl_vector.h:1281:7: note: candidate: ‘constexpr void std::vector<_Tp, _Alloc>::push_back(const value_type&) [with _Tp = CreateColumn; _Alloc = std::allocator<CreateColumn>; value_type = CreateColumn]’
+ 1281 |       push_back(const value_type& __x)
+      |       ^~~~~~~~~
+/usr/include/c++/13/bits/stl_vector.h:1281:35: note:   no known conversion for argument 1 from ‘executor::ColumnInfo’ to ‘const std::vector<CreateColumn>::value_type&’ {aka ‘const CreateColumn&’}
+ 1281 |       push_back(const value_type& __x)
+      |                 ~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/13/bits/stl_vector.h:1298:7: note: candidate: ‘constexpr void std::vector<_Tp, _Alloc>::push_back(value_type&&) [with _Tp = CreateColumn; _Alloc = std::allocator<CreateColumn>; value_type = CreateColumn]’
+ 1298 |       push_back(value_type&& __x)
+      |       ^~~~~~~~~
+/usr/include/c++/13/bits/stl_vector.h:1298:30: note:   no known conversion for argument 1 from ‘executor::ColumnInfo’ to ‘std::vector<CreateColumn>::value_type&&’ {aka ‘CreateColumn&&’}
+ 1298 |       push_back(value_type&& __x)
+      |                 ~~~~~~~~~~~~~^~~
+perf_test.cpp:23:34: error: no matching function for call to ‘std::vector<CreateColumn>::push_back(executor::ColumnInfo)’
+   23 |     createStmt->columns.push_back(ColumnInfo("val", "VARCHAR"));
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/13/bits/stl_vector.h:1281:7: note: candidate: ‘constexpr void std::vector<_Tp, _Alloc>::push_back(const value_type&) [with _Tp = CreateColumn; _Alloc = std::allocator<CreateColumn>; value_type = CreateColumn]’
+ 1281 |       push_back(const value_type& __x)
+      |       ^~~~~~~~~
+/usr/include/c++/13/bits/stl_vector.h:1281:35: note:   no known conversion for argument 1 from ‘executor::ColumnInfo’ to ‘const std::vector<CreateColumn>::value_type&’ {aka ‘const CreateColumn&’}
+ 1281 |       push_back(const value_type& __x)
+      |                 ~~~~~~~~~~~~~~~~~~^~~
+/usr/include/c++/13/bits/stl_vector.h:1298:7: note: candidate: ‘constexpr void std::vector<_Tp, _Alloc>::push_back(value_type&&) [with _Tp = CreateColumn; _Alloc = std::allocator<CreateColumn>; value_type = CreateColumn]’
+ 1298 |       push_back(value_type&& __x)
+      |       ^~~~~~~~~
+/usr/include/c++/13/bits/stl_vector.h:1298:30: note:   no known conversion for argument 1 from ‘executor::ColumnInfo’ to ‘std::vector<CreateColumn>::value_type&&’ {aka ‘CreateColumn&&’}
+ 1298 |       push_back(value_type&& __x)
+      |                 ~~~~~~~~~~~~~^~~
+core/engine/storage/BPlusTree.cpp: In member function ‘void storage::BPlusTree::insert(const Value&, const storage::RID&)’:
+core/engine/storage/BPlusTree.cpp:46:51: error: no matching function for call to ‘storage::PageManager::allocatePage()’
+   46 |         root_page_id_ = page_manager_.allocatePage();
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from core/engine/storage/BufferPool.h:4,
+                 from core/engine/storage/BPlusTree.h:3,
+                 from core/engine/storage/BPlusTree.cpp:1:
+core/engine/storage/PageManager.h:18:14: note: candidate: ‘uint32_t storage::PageManager::allocatePage(storage::PageType)’
+   18 |     uint32_t allocatePage(PageType page_type);
+      |              ^~~~~~~~~~~~
+core/engine/storage/PageManager.h:18:14: note:   candidate expects 1 argument, 0 provided
+core/engine/storage/BPlusTree.cpp: In member function ‘void storage::BPlusTree::splitLeaf(storage::BTreeLeafPage*, storage::Page*)’:
+core/engine/storage/BPlusTree.cpp:69:54: error: no matching function for call to ‘storage::PageManager::allocatePage()’
+   69 |     uint32_t new_page_id = page_manager_.allocatePage();
+      |                            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+core/engine/storage/PageManager.h:18:14: note: candidate: ‘uint32_t storage::PageManager::allocatePage(storage::PageType)’
+   18 |     uint32_t allocatePage(PageType page_type);
+      |              ^~~~~~~~~~~~
+core/engine/storage/PageManager.h:18:14: note:   candidate expects 1 argument, 0 provided
+core/engine/storage/BPlusTree.cpp: In member function ‘void storage::BPlusTree::insertIntoParent(uint32_t, const Value&, uint32_t)’:
+core/engine/storage/BPlusTree.cpp:97:58: error: no matching function for call to ‘storage::PageManager::allocatePage()’
+   97 |         uint32_t new_root_id = page_manager_.allocatePage();
+      |                                ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+core/engine/storage/PageManager.h:18:14: note: candidate: ‘uint32_t storage::PageManager::allocatePage(storage::PageType)’
+   18 |     uint32_t allocatePage(PageType page_type);
+      |              ^~~~~~~~~~~~
+core/engine/storage/PageManager.h:18:14: note:   candidate expects 1 argument, 0 provided
+core/engine/storage/BPlusTree.cpp: In member function ‘void storage::BPlusTree::splitInternal(storage::BTreeInternalPage*, storage::Page*)’:
+core/engine/storage/BPlusTree.cpp:137:54: error: no matching function for call to ‘storage::PageManager::allocatePage()’
+  137 |     uint32_t new_page_id = page_manager_.allocatePage();
+      |                            ~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+core/engine/storage/PageManager.h:18:14: note: candidate: ‘uint32_t storage::PageManager::allocatePage(storage::PageType)’
+   18 |     uint32_t allocatePage(PageType page_type);
+      |              ^~~~~~~~~~~~
+core/engine/storage/PageManager.h:18:14: note:   candidate expects 1 argument, 0 provided
+core/engine/executor/Catalog.cpp: In member function ‘bool executor::Catalog::createTable(const std::string&, const std::vector<executor::ColumnInfo>&)’:
+core/engine/executor/Catalog.cpp:50:90: error: ‘class storage::TableHeap’ has no member named ‘getBufferPool’
+   50 |         auto btree = std::make_unique<storage::BPlusTree>(tableName + "_idx", tableHeap->getBufferPool(), tableHeap->getPageManager());
+      |                                                                                          ^~~~~~~~~~~~~
+core/engine/executor/Catalog.cpp:50:118: error: ‘class storage::TableHeap’ has no member named ‘getPageManager’
+   50 |         auto btree = std::make_unique<storage::BPlusTree>(tableName + "_idx", tableHeap->getBufferPool(), tableHeap->getPageManager());
+      |                                                                                                                      ^~~~~~~~~~~~~~
+core/engine/executor/Catalog.cpp: In member function ‘void executor::Catalog::load()’:
+core/engine/executor/Catalog.cpp:150:103: error: ‘class storage::TableHeap’ has no member named ‘getBufferPool’
+  150 |             auto btree = std::make_unique<storage::BPlusTree>(tableName + "_idx", tables_[tableName]->getBufferPool(), tables_[tableName]->getPageManager());
+      |                                                                                                       ^~~~~~~~~~~~~
+core/engine/executor/Catalog.cpp:150:140: error: ‘class storage::TableHeap’ has no member named ‘getPageManager’
+  150 |             auto btree = std::make_unique<storage::BPlusTree>(tableName + "_idx", tables_[tableName]->getBufferPool(), tables_[tableName]->getPageManager());
+      |                                                                                                                                            ^~~~~~~~~~~~~~
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4,
+                 from core/engine/executor/ExecutorEngine.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/CreateExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/InsertExecutor.h:4,
+                 from core/engine/executor/InsertExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/SelectExecutor.h:4,
+                 from core/engine/executor/SelectExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+core/engine/executor/SelectExecutor.cpp: In member function ‘std::vector<executor::ResultRow> executor::SelectExecutor::execute(SelectStatement*)’:
+core/engine/executor/SelectExecutor.cpp:103:25: error: ‘rowCount’ was not declared in this scope
+  103 |                         rowCount = 1;
+      |                         ^~~~~~~~
+core/engine/executor/SelectExecutor.cpp:142:9: error: ‘rowCount’ was not declared in this scope
+  142 |         rowCount++;
+      |         ^~~~~~~~
+core/engine/executor/SelectExecutor.cpp:148:33: error: ‘rowCount’ was not declared in this scope
+  148 |     std::cout << "Selected " << rowCount << " row(s)" << std::endl;
+      |                                 ^~~~~~~~
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/DeleteExecutor.h:4,
+                 from core/engine/executor/DeleteExecutor.cpp:1:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Node.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Parser.h:3,
+                 from core/sql/ast/Parser.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Create.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Select.cpp:3:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/../ast/Node.h:6,
+                 from core/sql/parser/../ast/Parser.h:3,
+                 from core/sql/parser/Insert.h:3,
+                 from core/sql/parser/Insert.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^

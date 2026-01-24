@@ -7,11 +7,22 @@ namespace storage {
 PageManager::PageManager(const std::string& db_filename) 
     : filename_(db_filename), page_count_(0) {
     
-    // Try to open existing file
+    // Try to open existing file first
     file_.open(filename_, std::ios::in | std::ios::out | std::ios::binary);
     
     if (!file_.is_open()) {
-        // File doesn't exist, create new one
+        // File might not exist, try to create it
+        file_.clear(); // Clear error flags
+        file_.open(filename_, std::ios::out | std::ios::binary);
+        file_.close();
+        
+        // Reopen in read/write mode
+        file_.open(filename_, std::ios::in | std::ios::out | std::ios::binary);
+        
+        if (!file_.is_open()) {
+             throw std::runtime_error("Failed to open database file: " + filename_);
+        }
+        
         initializeFile();
     } else {
         // File exists, read page count and free list
@@ -76,7 +87,9 @@ uint32_t PageManager::allocatePage(PageType page_type) {
     
     // Initialize the page
     Page page(page_id, page_type);
-    writePage(page);
+    if (!writePage(page)) {
+        throw std::runtime_error("Failed to write allocated page " + std::to_string(page_id));
+    }
     
     return page_id;
 }
@@ -103,6 +116,7 @@ bool PageManager::readPage(uint32_t page_id, Page& page) {
     
     // Seek to page position
     std::streampos pos = static_cast<std::streampos>(page_id) * Page::PAGE_SIZE;
+    file_.clear();
     file_.seekg(pos);
     
     if (!file_.good()) {
@@ -129,6 +143,7 @@ bool PageManager::writePage(const Page& page) {
     
     // Seek to page position
     std::streampos pos = static_cast<std::streampos>(page_id) * Page::PAGE_SIZE;
+    file_.clear();
     file_.seekp(pos);
     
     if (!file_.good()) {

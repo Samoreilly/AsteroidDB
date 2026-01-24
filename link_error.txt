@@ -1,0 +1,135 @@
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/ExecutorEngine.h:3,
+                 from perf_test.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/storage/BTreePage.cpp:1:
+core/engine/storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/storage/BPlusTree.h:4,
+                 from core/engine/storage/BPlusTree.cpp:1:
+core/engine/storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/Catalog.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/ExecutorEngine.h:3,
+                 from core/engine/executor/ExecutorEngine.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4,
+                 from core/engine/executor/ExecutorEngine.h:4:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/CreateExecutor.h:3,
+                 from core/engine/executor/CreateExecutor.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/CreateExecutor.h:4:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/InsertExecutor.h:3,
+                 from core/engine/executor/InsertExecutor.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/InsertExecutor.h:4:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/SelectExecutor.h:3,
+                 from core/engine/executor/SelectExecutor.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/SelectExecutor.h:4:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/engine/executor/../storage/BPlusTree.h:4,
+                 from core/engine/executor/Catalog.h:8,
+                 from core/engine/executor/DeleteExecutor.h:3,
+                 from core/engine/executor/DeleteExecutor.cpp:1:
+core/engine/executor/../storage/BTreePage.h:81:70: error: ‘BTreeHeader’ was not declared in this scope; did you mean ‘getHeader’?
+   81 |     static constexpr size_t HEADER_SIZE = Page::HEADER_SIZE + sizeof(BTreeHeader) + sizeof(uint32_t);
+      |                                                                      ^~~~~~~~~~~
+      |                                                                      getHeader
+In file included from core/engine/executor/../../sql/ast/Node.h:6,
+                 from core/engine/executor/DeleteExecutor.h:4:
+core/engine/executor/../../sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/engine/executor/../../sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Node.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/ast/Node.h:6,
+                 from core/sql/ast/Parser.h:3,
+                 from core/sql/ast/Parser.cpp:1:
+core/sql/ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Create.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/Select.cpp:3:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^
+In file included from core/sql/parser/../ast/Node.h:6,
+                 from core/sql/parser/../ast/Parser.h:3,
+                 from core/sql/parser/Insert.h:3,
+                 from core/sql/parser/Insert.cpp:1:
+core/sql/parser/../ast/Expression.h: In member function ‘virtual Value MethodExpression::eval(Executor*)’:
+core/sql/parser/../ast/Expression.h:123:5: warning: no return statement in function returning non-void [-Wreturn-type]
+  123 |     }
+      |     ^

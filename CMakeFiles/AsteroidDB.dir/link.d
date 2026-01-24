@@ -14,6 +14,8 @@ AsteroidDB: \
   CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/BTreePage.cpp.o \
+  CMakeFiles/AsteroidDB.dir/core/engine/storage/BPlusTree.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/engine/executor/ExecutorEngine.cpp.o \
   CMakeFiles/AsteroidDB.dir/core/engine/executor/CreateExecutor.cpp.o \
@@ -78,6 +80,10 @@ CMakeFiles/AsteroidDB.dir/core/engine/storage/PageManager.cpp.o:
 CMakeFiles/AsteroidDB.dir/core/engine/storage/BufferPool.cpp.o:
 
 CMakeFiles/AsteroidDB.dir/core/engine/storage/TableHeap.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BTreePage.cpp.o:
+
+CMakeFiles/AsteroidDB.dir/core/engine/storage/BPlusTree.cpp.o:
 
 CMakeFiles/AsteroidDB.dir/core/engine/executor/Catalog.cpp.o:
 

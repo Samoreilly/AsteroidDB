@@ -65,6 +65,7 @@ void Insert::parseInputs(std::unique_ptr<InsertStatement>& insertStatement) {
 }
 
 void Insert::parseColumns(std::unique_ptr<InsertStatement>& insertStatement, std::vector<std::string>& v) {
+    (void)v; // unused
 
     parser.consume(SYMBOL, "(");
 
@@ -82,7 +83,7 @@ void Insert::parseColumns(std::unique_ptr<InsertStatement>& insertStatement, std
 
 void Insert::verifyInsert(const std::unique_ptr<InsertStatement>& insertStatement, const int& size) {
 
-    if(insertStatement->columns.size() != size){
+    if(static_cast<int>(insertStatement->columns.size()) != size){
         std::cout << "COLUMN SIZE" << insertStatement->columns.size() << "\n";
         std::cout << size << "\n";
         throw std::runtime_error("COLUMNS AND INPUT LENGTH DON'T MATCH");

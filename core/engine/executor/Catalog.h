@@ -5,6 +5,7 @@
 #include <map>
 #include <memory>
 #include <vector>
+#include "../storage/BPlusTree.h"
 
 namespace executor {
 
@@ -27,6 +28,10 @@ struct TableSchema {
     
     // Check if column exists
     bool hasColumn(const std::string& columnName) const;
+    
+    // Index information
+    int indexColumn = -1; // -1 if no index
+    uint32_t indexRootPageId = 0;
 };
 
 // Catalog manages all tables and their schemas
@@ -46,9 +51,14 @@ public:
     
     // Get table schema
     const TableSchema* getSchema(const std::string& tableName) const;
+
+    // Get table index
+    storage::BPlusTree* getIndex(const std::string& tableName);
     
     // Drop table
     bool dropTable(const std::string& tableName);
+    
+    void save();
     
 private:
     std::string db_directory_;
@@ -59,7 +69,9 @@ private:
     // Table name -> Schema
     std::map<std::string, TableSchema> schemas_;
     
-    void save();
+    // Table name -> BPlusTree
+    std::map<std::string, std::unique_ptr<storage::BPlusTree>> indices_;
+    
     void load();
 };
 

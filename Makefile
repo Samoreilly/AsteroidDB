@@ -280,6 +280,54 @@ core/engine/executor/SelectExecutor.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/executor/SelectExecutor.cpp.s
 .PHONY : core/engine/executor/SelectExecutor.cpp.s
 
+core/engine/storage/BPlusTree.o: core/engine/storage/BPlusTree.cpp.o
+.PHONY : core/engine/storage/BPlusTree.o
+
+# target to build an object file
+core/engine/storage/BPlusTree.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BPlusTree.cpp.o
+.PHONY : core/engine/storage/BPlusTree.cpp.o
+
+core/engine/storage/BPlusTree.i: core/engine/storage/BPlusTree.cpp.i
+.PHONY : core/engine/storage/BPlusTree.i
+
+# target to preprocess a source file
+core/engine/storage/BPlusTree.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BPlusTree.cpp.i
+.PHONY : core/engine/storage/BPlusTree.cpp.i
+
+core/engine/storage/BPlusTree.s: core/engine/storage/BPlusTree.cpp.s
+.PHONY : core/engine/storage/BPlusTree.s
+
+# target to generate assembly for a file
+core/engine/storage/BPlusTree.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BPlusTree.cpp.s
+.PHONY : core/engine/storage/BPlusTree.cpp.s
+
+core/engine/storage/BTreePage.o: core/engine/storage/BTreePage.cpp.o
+.PHONY : core/engine/storage/BTreePage.o
+
+# target to build an object file
+core/engine/storage/BTreePage.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BTreePage.cpp.o
+.PHONY : core/engine/storage/BTreePage.cpp.o
+
+core/engine/storage/BTreePage.i: core/engine/storage/BTreePage.cpp.i
+.PHONY : core/engine/storage/BTreePage.i
+
+# target to preprocess a source file
+core/engine/storage/BTreePage.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BTreePage.cpp.i
+.PHONY : core/engine/storage/BTreePage.cpp.i
+
+core/engine/storage/BTreePage.s: core/engine/storage/BTreePage.cpp.s
+.PHONY : core/engine/storage/BTreePage.s
+
+# target to generate assembly for a file
+core/engine/storage/BTreePage.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/AsteroidDB.dir/build.make CMakeFiles/AsteroidDB.dir/core/engine/storage/BTreePage.cpp.s
+.PHONY : core/engine/storage/BTreePage.cpp.s
+
 core/engine/storage/BufferPool.o: core/engine/storage/BufferPool.cpp.o
 .PHONY : core/engine/storage/BufferPool.o
 
@@ -596,6 +644,12 @@ help:
 	@echo "... core/engine/executor/SelectExecutor.o"
 	@echo "... core/engine/executor/SelectExecutor.i"
 	@echo "... core/engine/executor/SelectExecutor.s"
+	@echo "... core/engine/storage/BPlusTree.o"
+	@echo "... core/engine/storage/BPlusTree.i"
+	@echo "... core/engine/storage/BPlusTree.s"
+	@echo "... core/engine/storage/BTreePage.o"
+	@echo "... core/engine/storage/BTreePage.i"
+	@echo "... core/engine/storage/BTreePage.s"
 	@echo "... core/engine/storage/BufferPool.o"
 	@echo "... core/engine/storage/BufferPool.i"
 	@echo "... core/engine/storage/BufferPool.s"

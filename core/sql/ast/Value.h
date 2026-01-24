@@ -28,7 +28,20 @@ public:
     std::string asString() const { return std::get<std::string>(data); }
     bool asBool() const { return std::get<bool>(data); }
     
+    std::string getTypeName() const {
+        if (isInt()) return "INT";
+        if (isDouble()) return "DOUBLE";
+        if (isString()) return "STRING";
+        if (isBool()) return "BOOL";
+        if (isNull()) return "NULL";
+        return "UNKNOWN";
+    }
+
     bool operator>(const Value& other) const {
+        if (isNull() && other.isNull()) return false;
+        if (isNull()) return false; 
+        if (other.isNull()) return true; 
+
         if (isInt() && other.isInt()) {
             return asInt() > other.asInt();
         }
@@ -39,10 +52,13 @@ public:
             return asString() > other.asString();
         }
         
-        throw std::runtime_error("Cannot compare these types");
+        throw std::runtime_error("Cannot compare types: " + getTypeName() + " > " + other.getTypeName());
     }
     
     bool operator<(const Value& other) const {
+        if (isNull() && other.isNull()) return false;
+        if (isNull()) return true; 
+        if (other.isNull()) return false; 
 
         if (isInt() && other.isInt()) {
             return asInt() < other.asInt();
@@ -54,8 +70,7 @@ public:
             return asString() < other.asString();
         }
 
-        throw std::runtime_error("Cannot compare these types");
- 
+        throw std::runtime_error("Cannot compare types: " + getTypeName() + " < " + other.getTypeName());
     }
 
     bool operator==(const Value& other) const {
@@ -69,37 +84,34 @@ public:
         return false;
     }
 
-    bool operator!=(const Value& other) {
+    bool operator!=(const Value& other) const {
+        if(isNull() || other.isNull()) return true;
 
-        if(isNull() || other.isNull()) return false;
-
-        if(isInt() && other.isInt())return asInt() != other.isInt();
+        if(isInt() && other.isInt()) return asInt() != other.asInt();
         if(isString() && other.isString()) return asString() != other.asString();
         if(isBool() && other.isBool()) return asBool() != other.asBool();
         
-        return false;
+        throw std::runtime_error("Cannot compare types: " + getTypeName() + " != " + other.getTypeName());
     }
 
-    bool operator>=(const Value& other) {
-        
+    bool operator>=(const Value& other) const {
         if(isNull() || other.isNull()) return false;
 
-        if(isInt() && other.isInt()) return asInt() >= other.isInt();
+        if(isInt() && other.isInt()) return asInt() >= other.asInt();
         if(isString() && other.isString()) return asString() >= other.asString();
         if(isBool() && other.isBool()) return asBool() >= other.asBool();
 
-        return false;
+        throw std::runtime_error("Cannot compare types: " + getTypeName() + " >= " + other.getTypeName());
     }
    
-    bool operator<=(const Value& other) {
-        
+    bool operator<=(const Value& other) const {
         if(isNull() || other.isNull()) return false;
 
-        if(isInt() && other.isInt()) return asInt() <= other.isInt();
+        if(isInt() && other.isInt()) return asInt() <= other.asInt();
         if(isString() && other.isString()) return asString() <= other.asString();
         if(isBool() && other.isBool()) return asBool() <= other.asBool();
 
-        return false;
+        throw std::runtime_error("Cannot compare types: " + getTypeName() + " <= " + other.getTypeName());
     }
  
     friend std::ostream& operator<<(std::ostream& os, const Value& v) {

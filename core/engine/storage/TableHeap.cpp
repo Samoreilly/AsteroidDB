@@ -5,7 +5,7 @@
 namespace storage {
 
 TableHeap::TableHeap(const std::string& table_name, const std::string& db_directory)
-    : table_name_(table_name), first_page_id_(1) {
+    : name_(table_name), first_page_id_(1) {
     
     // Create database file path
     db_file_ = db_directory + "/" + table_name + ".db";
@@ -145,7 +145,7 @@ uint32_t TableHeap::findPageWithSpace(size_t required_space) {
     
     // No suitable page found, allocate new one
     uint32_t new_page_id;
-    Page* new_page = buffer_pool_->newPage(PageType::DATA_PAGE, new_page_id);
+    buffer_pool_->newPage(PageType::DATA_PAGE, new_page_id);
     buffer_pool_->unpinPage(new_page_id, true);
     
     return new_page_id;
@@ -199,31 +199,42 @@ std::vector<Value> TableHeap::Iterator::getRecord() {
 }
 
 void TableHeap::Iterator::advance() {
-    while (current_page_ != nullptr) {
-        // Check if current slot is valid
+    while (true) {
+        if (current_page_ == nullptr) {
+            // Check if we reached the end of the file
+            if (current_page_id_ >= table_->page_manager_->getPageCount()) {
+                current_page_id_ = 0;
+                return;
+            }
+
+            // Try to load the current page
+            loadPage(current_page_id_);
+            
+            if (current_page_ == nullptr) {
+                // Not a data page (e.g., B+ Tree page), skip it
+                current_page_id_++;
+                continue;
+            }
+            
+            // Successfully loaded a data page, start from the first slot
+            current_slot_id_ = 0;
+        }
+
+        // We have a pinned data page, check current slot
         if (current_slot_id_ < current_page_->getSlotCount()) {
             uint16_t size;
             const char* data = current_page_->getRecord(current_slot_id_, size);
             if (data != nullptr) {
-                // Found valid record
+                // Found a valid record
                 return;
             }
-            // Slot is deleted, try next
+            // Slot is deleted, try next slot
             current_slot_id_++;
         } else {
-            // Move to next page
+            // No more slots in this page, move to next page
             table_->buffer_pool_->unpinPage(current_page_id_, false);
+            current_page_ = nullptr;
             current_page_id_++;
-            
-            if (current_page_id_ >= table_->page_manager_->getPageCount()) {
-                // No more pages
-                current_page_ = nullptr;
-                current_page_id_ = 0;
-                return;
-            }
-            
-            loadPage(current_page_id_);
-            current_slot_id_ = 0;
         }
     }
 }

@@ -16,6 +16,8 @@ add_executable(
   core/engine/storage/PageManager.cpp
   core/engine/storage/BufferPool.cpp
   core/engine/storage/TableHeap.cpp
+  core/engine/storage/BTreePage.cpp
+  core/engine/storage/BPlusTree.cpp
   core/engine/executor/Catalog.cpp
   core/engine/executor/ExecutorEngine.cpp
   core/engine/executor/CreateExecutor.cpp

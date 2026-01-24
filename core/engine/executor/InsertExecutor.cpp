@@ -62,6 +62,18 @@ void InsertExecutor::execute(InsertStatement* stmt) {
         // Insert into table
         try {
             storage::RID rid = table->insertRecord(values);
+            
+            // Update B+ Tree index if it exists
+            storage::BPlusTree* index = catalog_->getIndex(stmt->table);
+            if (index != nullptr && schema->indexColumn != -1) {
+                // Use the value from the original insertion for the index
+                // Note: 'values' here has been reordered to match schema
+                index->insert(values[schema->indexColumn], rid);
+                // Update catalog metadata for root page ID
+                const_cast<TableSchema*>(schema)->indexRootPageId = index->getRootPageId();
+                catalog_->save();
+            }
+            
             successCount++;
         } catch (const std::exception& e) {
             std::cout << "Insert failed for row " << (r + 1) << ": " << e.what() << std::endl;

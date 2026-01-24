@@ -30,6 +30,7 @@ public:
     }
 
     void print(int indent = 0) const override {
+        (void)indent; // unused for now
         std::cout << "InExpression";
         if (isNotIn) std::cout << "(NOT)";
         std::cout << " {" << std::endl;
@@ -120,6 +121,8 @@ public:
         : method(std::move(args)) {}
     
     Value eval(Executor* executor) override {
+        (void)executor; // unused
+        throw std::runtime_error("MethodExpression not implemented");
     }
 
 
@@ -145,6 +148,7 @@ public:
     Literal(Value v) : value(std::move(v)) {}
     
     Value eval(Executor* executor) override {
+        (void)executor; // unused
         return value;
     }
     
